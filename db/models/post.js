@@ -33,6 +33,8 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     Post.belongsToMany(models.User, columnMapLike);
+
+
   };
   return Post;
 };
