@@ -7,7 +7,7 @@
 ## Database Schema
 #### Last Updated: 2/10/21
 
-![database-schema](/assets/readme_images/database-schema-feb10.png)
+![database-schema](/assets/readme_images/database-schema-feb14.png)
 
 
 
