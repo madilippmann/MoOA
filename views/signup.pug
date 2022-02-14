@@ -1,0 +1,18 @@
+extends layout.pug
+
+block content
+    h1= title
+    +validationErrorSummary(errors)
+    form(action="/signup", method="post")
+        input(type="hidden", name="_csrf", value=csrfToken)
+
+        +field("Email", "email", user.email, 'email')
+        +field("Email", "email", user.email, 'email')
+        +field("Email", "email", user.email, 'email')
+
+        +field("Email", "email", user.email, 'email')
+
+        +field("Password", "password", null, 'password')
+        +field("Confirm Password", "email", user.email, 'email')
+
+        button(type="submit").btn Login
