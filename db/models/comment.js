@@ -1,12 +1,26 @@
-'use strict';
+"use strict";
 module.exports = (sequelize, DataTypes) => {
-  const Comment = sequelize.define('Comment', {
-    post_id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER,
-    comment: DataTypes.TEXT
-  }, {});
-  Comment.associate = function(models) {
-    // associations can be defined here
+  const Comment = sequelize.define(
+    "Comment",
+    {
+      post_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      user_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      comment: {
+        allowNull: false,
+        type: DataTypes.TEXT,
+      },
+    },
+    {}
+  );
+  Comment.associate = function (models) {
+    Comment.belongsTo(models.Post, { foreignKey: "post_id" });
+    Comment.belongsTo(models.User, { foreignKey: "user_id" });
   };
   return Comment;
 };
