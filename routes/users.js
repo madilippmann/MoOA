@@ -22,7 +22,7 @@ router.get('/login', csrfProtection, function(req, res, next) {
 router.post('/login', loginValidators, csrfProtection, asyncHandler(async function(req, res, next) {
 
   const { email, password } = req.body
-  const errors = [];
+  let errors = [];
 
   const validatorErrors = validationResult(req);
 

@@ -12,26 +12,52 @@ html
     //- link(rel='stylesheet' href='/stylesheets/reset.css')
 
   body
-    header
-      #header-container
-        span.title#full-title MUSEUM <span id="of" class="title">OF</span> ONLINE ART
-        nav
-          ul.navLinks
-            li
-              a.signInLink(href="") SIGN IN
-            li
-              a.callToAction(href="")
-                button.signUpButton SIGN UP
-    .sideBarContainer
-       .sideBar
-          img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
-          .sideBarLinkContainer
-            ul.sideBarUl
+
+    if user
+      header
+        #header-container.loggedin
+          span.title#full-title MUSEUM <span id="of" class="title">OF</span> ONLINE ART
+          nav
+            ul.navLinks
               li
-                a(href="") SETTINGS
-              li#bottom-border
-                a(href="") SIGN OUT
-              li: a(href="")
-                img(src="/static/icons/info.png", alt="info icon").icon
-    .main-body
-      block content
+                a.signInLink(href="") SIGN IN
+              li
+                a.callToAction(href="")
+                  button.signUpButton SIGN UP
+      .sideBarContainer
+        .sideBar
+            img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
+            .sideBarLinkContainer
+              ul.sideBarUl
+                li
+                  a(href="") SETTINGS
+                li#bottom-border
+                  a(href="") SIGN OUT
+                li: a(href="")
+                  img(src="/static/icons/info.png", alt="info icon").icon
+      .main-body
+    else
+      header
+        #header-container
+          span.title#full-title MUSEUM <span id="of" class="title">OF</span> ONLINE ART
+          nav
+            ul.navLinks
+              li
+                a.signInLink(href="") SIGN IN
+              li
+                a.callToAction(href="")
+                  button.signUpButton SIGN UP
+      .sideBarContainer
+        .sideBar
+            img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
+            .sideBarLinkContainer
+              ul.sideBarUl
+                li
+                  a(href="") SETTINGS
+                li#bottom-border
+                  a(href="") SIGN OUT
+                li: a(href="")
+                  img(src="/static/icons/info.png", alt="info icon").icon
+      .main-body
+
+    block content

@@ -34,6 +34,8 @@ body {
 }
 
 
+
+
 /* navbar */
 header {
     /* display: flex;
@@ -61,6 +63,8 @@ header {
     justify-content: space-between;
     height: 100%;
 }
+
+
 
 .navLinks  {
     display: flex;
