@@ -10,6 +10,8 @@ html
     //- link(href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet")
     link(rel="stylesheet" href="/stylesheets/styles.css")
     //- link(rel='stylesheet' href='/stylesheets/reset.css')
+    script(src="https://kit.fontawesome.com/d90640e755.js" crossorigin="anonymous")
+
 
   body
 
@@ -20,21 +22,25 @@ html
           nav
             ul.navLinks
               li
-                a.signInLink(href="") SIGN IN
+                a.createPost(href="")
+                  i(class="fa-solid fa-square-plus navIcons")
               li
-                a.callToAction(href="")
-                  button.signUpButton SIGN UP
+                a.home(href="/")
+                  i(class="fa-solid fa-house-chimney navIcons")
+                          
       .sideBarContainer
         .sideBar
             img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
             .sideBarLinkContainer
               ul.sideBarUl
+                li 
+                  i(class="fa-solid fa-user avatar")
                 li
                   a(href="") SETTINGS
                 li#bottom-border
                   a(href="/signout")#logout-btn SIGN OUT
                 li: a(href="")
-                  img(src="/static/icons/info.png", alt="info icon").icon
+                  i(class="fa-solid fa-circle-info info")
       .main-body
         block content
 
@@ -45,20 +51,19 @@ html
           nav
             ul.navLinks
               li
-                a.signInLink(href="") SIGN IN
+                a.signInLink(href="/login") 
+                  button.signInButton SIGN IN 
               li
-                a.callToAction(href="")
+                a.callToAction(href="/signup")
                   button.signUpButton SIGN UP
       .sideBarContainer
         .sideBar
+        .logoDiv 
+        .sideBarDiv
             img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
             .sideBarLinkContainer
               ul.sideBarUl
-                li
-                  a(href="") LOGGED OUT
-                li#bottom-border
-                  a(href="") TODO
                 li: a(href="")
-                  img(src="/static/icons/info.png", alt="info icon").icon
+                  i(class="fa-solid fa-circle-info info")
       .main-body
         block content
