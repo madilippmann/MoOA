@@ -18,6 +18,8 @@ block content
                 +field("Email", "email", user.email, 'email')
                 +field("Password", "password", null, 'password')
                 +field("Confirm Password", "confirmPassword", null, 'password')
-
-                button(type="submit").btn Sign Up
-                button(type="button").btn: a(href="/") Return
+            div.form-buttons
+                button(type="submit").btn.signUpButton.orange Sign Up
+                button(type="button").btn.signUpButton.cancel: a(href="/") Cancel
+            .demo-user 
+                
