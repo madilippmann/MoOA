@@ -9,6 +9,7 @@ html
     //- link(href="https://fonts.googleapis.com/css2?family=Codystar:wght@300&display=swap" rel="stylesheet")
     //- link(href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet")
     link(rel="stylesheet" href="/stylesheets/styles.css")
+    link(rel="shortcut icon" type="image/jpg" href="/static/images/logo.jpg")
     //- link(rel='stylesheet' href='/stylesheets/reset.css')
     block head
     script(src="https://kit.fontawesome.com/d90640e755.js" crossorigin="anonymous")
@@ -28,13 +29,13 @@ html
               li
                 a.home(href="/")
                   i(class="fa-solid fa-house-chimney navIcons")
-                          
+
       .sideBarContainer.grey
         .sideBar
             img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
             .sideBarLinkContainer
               ul.sideBarUl
-                li 
+                li
                   i(class="fa-solid fa-user avatar")
                 li
                   a(href="") SETTINGS
@@ -52,8 +53,8 @@ html
           nav
             ul.navLinks
               li
-                a.signInLink(href="/login") 
-                  button.signInButton SIGN IN 
+                a.signInLink(href="/login")
+                  button.signInButton SIGN IN
               li
                 a.callToAction(href="/signup")
                   button.signUpButton SIGN UP

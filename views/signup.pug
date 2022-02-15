@@ -1,7 +1,7 @@
 extends layout.pug
 include utils.pug
 
-append head 
+append head
     link(rel="stylesheet" href="/stylesheets/forms.css")
 
 block content
@@ -21,5 +21,5 @@ block content
             div.form-buttons
                 button(type="submit").btn.signUpButton.orange Sign Up
                 button(type="button").btn.signUpButton.cancel: a(href="/") Cancel
-            .demo-user 
-                
+            .demo-user
+                button(type="button").btn.signUpButton.demo: a(href="/") Demo User

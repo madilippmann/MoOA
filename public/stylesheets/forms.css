@@ -42,7 +42,7 @@
 
 .form-buttons {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .form-buttons button {
@@ -57,6 +57,7 @@
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.377);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.171);
     transition: background-color;
+    cursor: pointer;
 }
 
 .signUpButton.cancel {
@@ -66,6 +67,30 @@
     transition: background-color;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.377);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.171);
+}
+
+.signUpButton.demo {
+    background-color: transparent;
+    border:#333333 2px solid;
+    text-transform: uppercase;
+    border-radius: 10px;
+    transition: background-color;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.205);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.171);
+    width: 100%;
+    height: 50px;
+    transition: background-color linear 00.25s;
+}
+
+.demo-user {
+    display: flex;
+    justify-content: center;
+    padding-top: 25px;
+}
+
+.demo-user a{
+    font-size: 15px;
+    font-weight: 500;
 }
 
 .signUpButton.cancel a {
@@ -81,4 +106,8 @@
 .signUpButton.cancel:hover {
     transition-duration: 0.25s;
     background-color: #424242;
+}
+
+.signUpButton.demo:hover {
+    background-color: rgba(128, 128, 128, 0.383);
 }
