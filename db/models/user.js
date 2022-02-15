@@ -51,10 +51,12 @@ module.exports = (sequelize, DataTypes) => {
     const columnMapLike = {
       through: "Like",
       foreignKey: "user_id",
-      otherKey: "post_id",
-    };
+      otherKey: "post_id"
+    }
 
-    User.belongsToMany(models.Post, columnMapLike);
+    User.belongsToMany(models.Post, columnMapLike)
+
+
   };
   return User;
 };
