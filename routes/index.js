@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+// FIX Grabs seed data from data.js file
+const posts = require('../data.js')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'a/A Express Skeleton Home' });
+  res.render('home', { title: 'Latest Exhibits' , posts });
 });
 
 module.exports = router;

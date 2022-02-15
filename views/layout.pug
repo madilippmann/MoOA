@@ -1,8 +1,37 @@
 doctype html
 html
   head
-      block head
-        title="MoOA"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
+    title= "MoOA"
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    //- Grabs both fonts and all their available font weights
+    link(href="https://fonts.googleapis.com/css2?family=Codystar:wght@300;400&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet")
+    //- link(href="https://fonts.googleapis.com/css2?family=Codystar:wght@300&display=swap" rel="stylesheet")
+    //- link(href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet")
+    link(rel="stylesheet" href="/stylesheets/styles.css")
+    //- link(rel='stylesheet' href='/stylesheets/reset.css')
+
   body
-    block content
+    header
+      #header-container
+        span.title#full-title MUSEUM <span id="of" class="title">OF</span> ONLINE ART
+        nav
+          ul.navLinks
+            li
+              a.signInLink(href="") SIGN IN
+            li
+              a.callToAction(href="")
+                button.signUpButton SIGN UP
+    .sideBarContainer
+       .sideBar
+          img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
+          .sideBarLinkContainer
+            ul.sideBarUl
+              li
+                a(href="") SETTINGS
+              li#bottom-border
+                a(href="") SIGN OUT
+              li: a(href="")
+                img(src="/static/icons/info.png", alt="info icon").icon
+    .main-body
+      block content
