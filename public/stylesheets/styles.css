@@ -90,7 +90,7 @@ header {
 
 .navLinks li {
    padding: 20px;
-   
+
 }
 
 
@@ -105,7 +105,7 @@ header {
     transition: background-color .25s linear;
 
 
-    
+
 }
 
 .signInButton:hover {
@@ -252,7 +252,7 @@ header {
     color: #979797;
 }
 
-/* 
+/*
 .icon {
     height: 30px;
     width: 30px;
@@ -282,6 +282,7 @@ header {
     display:flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 
