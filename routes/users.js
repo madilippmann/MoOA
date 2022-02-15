@@ -38,7 +38,9 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async functi
 
       if (passwordMatch) {
         loginUser(req, res, user);
-        return res.redirect('/')
+        return req.session.save(() => {
+          res.redirect('/')
+        })
       }
     }
 
@@ -91,8 +93,10 @@ router.post('/signup', userValidators, csrfProtection, asyncHandler(async functi
       await user.save();
 
       loginUser(req, res, user);
+      return req.session.save(() => {
+        res.redirect('/')
+      })
 
-      res.redirect('/');
 
   } else {
 
