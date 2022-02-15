@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { csrfProtection, asyncHandler } = require('./utils')
+const { csrfProtection, asyncHandler, userValidators, loginValidators, validationResult } = require('./utils')
+const db = require('../db/models');
+const bcrypt = require('bcryptjs');
+
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -8,28 +12,55 @@ router.get('/', function(req, res, next) {
 });
 
 
+
+
+
 router.get('/login', csrfProtection, function(req, res, next) {
   res.render('login', {
     csrfToken: req.csrfToken(),
     title: "Login",
-    user: {},
+
   })
 });
 
 
-router.post('/login', csrfProtection, asyncHandler(async function(req, res, next) {
-  // if validators fail
-  if (TODO) {
-    res.render('login', {
-      csrfToken: req.csrfToken(),
-      title: "Login",
-      user: {},
-    })
 
-    // if validators pass
+router.post('/login', loginValidators, csrfProtection, asyncHandler(async function(req, res, next) {
+
+  const { email, password } = req.body
+  const errors = [];
+
+  const validatorErrors = validationResult(req);
+
+  if (validatorErrors.isEmpty()) {
+    const user = await db.User.findOne({
+      where: { email }
+    });
+
+    if (user) {
+      const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+
+      if (passwordMatch) {
+        // TODO login user
+
+        return res.redirect('/')
+      }
+    }
+
+    errors.push('Incorrect login credentials')
   } else {
-    res.redirect('/')
+
+    errors = validatorErrors.array().map(error => error.msg);
+
   }
+
+  res.render('login', {
+    csrfToken: req.csrfToken(),
+    title: "Login",
+    email,
+    errors
+  })
+
 }));
 
 
@@ -37,23 +68,47 @@ router.get('/signup', csrfProtection, function(req, res, next) {
   res.render('signup', {
     csrfToken: req.csrfToken(),
     title: "Sign Up",
-    user: {},
-    errors: []
+    user: {}
   })
 });
 
-router.post('/signup', csrfProtection, asyncHandler(async function(req, res, next) {
+router.post('/signup', userValidators, csrfProtection, asyncHandler(async function(req, res, next) {
   // if validators fail
-  if (TODO) {
+
+  const { firstName, lastName, username, email, password } = req.body
+
+  const user = await db.User.build({
+    firstName,
+    lastName,
+    username,
+    email,
+  });
+
+  const validatorErrors = validationResult(req);
+
+  if (validatorErrors.isEmpty()) {
+
+      const hashedPassword = await bcrypt.hash(password, 12);
+
+      user.hashedPassword = hashedPassword;
+
+      await user.save();
+
+      // TODO Login user
+
+      res.redirect('/');
+
+  } else {
+
+    const errors = validatorErrors.array().map(error => error.msg);
+
     res.render('signup', {
       csrfToken: req.csrfToken(),
       title: "Sign Up",
-      user: {}
+      user,
+      errors
     })
 
-    // if validators pass
-  } else {
-    res.redirect('/')
   }
 }));
 
