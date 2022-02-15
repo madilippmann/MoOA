@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const { sequelize } = require('./db/models');
 const session = require('express-session');
+const { restoreUser } = require('./auth');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -27,6 +28,7 @@ const store = new SequelizeStore({ db: sequelize });
 
 app.use(
   session({
+    name: 'mooaLogin.sid',
     secret: sessionSecret,
     store,
     saveUninitialized: false,
@@ -34,6 +36,7 @@ app.use(
   })
 );
 
+app.use(restoreUser)
 // create Session table if it doesn't already exist
 store.sync();
 
