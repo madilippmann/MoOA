@@ -3,6 +3,7 @@ const router = express.Router();
 const { csrfProtection, asyncHandler, userValidators, loginValidators, validationResult } = require('./utils')
 const db = require('../db/models');
 const bcrypt = require('bcryptjs');
+const { loginUser } = require('../auth');
 
 
 
@@ -35,8 +36,7 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async functi
       const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
 
       if (passwordMatch) {
-        // TODO login user
-
+        loginUser(req, res, user);
         return res.redirect('/')
       }
     }
@@ -64,6 +64,7 @@ router.get('/signup', csrfProtection, function(req, res, next) {
     title: "Sign Up",
     user: {}
   })
+
 });
 
 router.post('/signup', userValidators, csrfProtection, asyncHandler(async function(req, res, next) {
@@ -88,7 +89,7 @@ router.post('/signup', userValidators, csrfProtection, asyncHandler(async functi
 
       await user.save();
 
-      // TODO Login user
+      loginUser(req, res, user);
 
       res.redirect('/');
 
