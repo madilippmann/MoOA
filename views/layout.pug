@@ -13,7 +13,7 @@ html
 
   body
 
-    if user
+    if locals.authenticated
       header
         #header-container.loggedin
           span.title#full-title MUSEUM <span id="of" class="title">OF</span> ONLINE ART
@@ -32,10 +32,12 @@ html
                 li
                   a(href="") SETTINGS
                 li#bottom-border
-                  a(href="") SIGN OUT
+                  a(href="/signout")#logout-btn SIGN OUT
                 li: a(href="")
                   img(src="/static/icons/info.png", alt="info icon").icon
       .main-body
+        block content
+
     else
       header
         #header-container
@@ -53,11 +55,10 @@ html
             .sideBarLinkContainer
               ul.sideBarUl
                 li
-                  a(href="") SETTINGS
+                  a(href="") LOGGED OUT
                 li#bottom-border
-                  a(href="") SIGN OUT
+                  a(href="") TODO
                 li: a(href="")
                   img(src="/static/icons/info.png", alt="info icon").icon
       .main-body
-
-    block content
+        block content

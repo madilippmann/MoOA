@@ -5,6 +5,7 @@ const posts = require('../data.js')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  console.log(res.locals.authenticated);
   res.render('home', { title: 'Latest Exhibits' , posts });
 });
 
