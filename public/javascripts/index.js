@@ -1,11 +1,11 @@
-window.addEventListener("load", (event)=>{
+window.addEventListener("DOMContentLoaded", (event)=>{
     console.log("hello from javascript!")
 
-    // const logoutButton = document.getElementById('logout-btn');
+    const demoButton = document.querySelector('.demo');
 
-    // logoutButton.addEventListener('click', event => {
-
-    // })
+    demoButton.addEventListener("click", (event) => {
+        
+    })
 
 
 })
