@@ -1,0 +1,19 @@
+.outer-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-element {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+
+}
+
+.form-input {
+    width: 250px;
+    height: 30px;
+    margin-bottom: 10px;
+}

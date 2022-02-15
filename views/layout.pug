@@ -10,6 +10,7 @@ html
     //- link(href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet")
     link(rel="stylesheet" href="/stylesheets/styles.css")
     //- link(rel='stylesheet' href='/stylesheets/reset.css')
+    block head
     script(src="https://kit.fontawesome.com/d90640e755.js" crossorigin="anonymous")
 
 
@@ -28,7 +29,7 @@ html
                 a.home(href="/")
                   i(class="fa-solid fa-house-chimney navIcons")
                           
-      .sideBarContainer
+      .sideBarContainer.grey
         .sideBar
             img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
             .sideBarLinkContainer
@@ -40,7 +41,7 @@ html
                 li#bottom-border
                   a(href="/signout")#logout-btn SIGN OUT
                 li: a(href="")
-                  i(class="fa-solid fa-circle-info info")
+                  i(class="fa-solid fa-circle-info info-grey")
       .main-body
         block content
 
@@ -58,12 +59,12 @@ html
                   button.signUpButton SIGN UP
       .sideBarContainer
         .sideBar
-        .logoDiv 
-        .sideBarDiv
-            img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
+          .logoDiv
+             a(href="/").logo-home: img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
+          .sideBarDiv
             .sideBarLinkContainer
               ul.sideBarUl
-                li: a(href="")
-                  i(class="fa-solid fa-circle-info info")
+                li: a(href="https://linktr.ee/alinaqvi1")
+                  i(class="fa-solid fa-circle-info info-loggedout")
       .main-body
         block content

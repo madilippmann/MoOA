@@ -146,6 +146,10 @@ header {
 }
 
 /* sidebar */
+.grey {
+    background-color: #424242;
+}
+
 .sideBarContainer {
     /* display: flex;
     justify-content: space-around;
@@ -163,9 +167,7 @@ header {
     left: 33px;
     top: 0px;
 
-    background: #424242;
-
-
+    /* background: #424242; */
 }
 
 .sideBar {
@@ -176,6 +178,11 @@ header {
     justify-content: space-between;
 }
 
+.sideBarDiv {
+    background-color: #e7e7e7;
+    width: 70%;
+    height: 100%;
+}
 
 .sideBarLinkContainer {
     display: flex;
@@ -187,6 +194,22 @@ header {
     margin-top: 12px;
     max-width: 90px;
 
+}
+
+.logoDiv {
+    height: 150px;
+    background-color: #424242;
+    position: fixed;
+    width: 127px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .sideBarUl  {
@@ -201,8 +224,6 @@ header {
 
 .sideBarUl li {
     padding-top: 20px;
-
-
 }
 
 .sideBarUl a {
@@ -219,10 +240,17 @@ header {
     padding-bottom: 10px;
 }
 
-.info {
+.info-grey {
     font-size: 25px;
 }
 
+.info-loggedout {
+    font-size: 25px;
+    color: #6d6d6d;
+}
+.info-loggedout:hover {
+    color: #979797;
+}
 
 /* 
 .icon {
