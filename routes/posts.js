@@ -19,8 +19,6 @@ router.post('/', postValidator, requireAuth, csrfProtection, asyncHandler(async 
 
     const userId = req.session.auth.userId
 
-    console.log("USER ID: ", userId)
-
     const post = await db.Post.build({
         title,
         user_id: userId,
@@ -44,6 +42,25 @@ router.post('/', postValidator, requireAuth, csrfProtection, asyncHandler(async 
             errors
         })
     }
+}))
+
+router.get('/:postId', asyncHandler(async (req, res, next) => {
+    const postId = parseInt(req.params.postId, 10);
+
+    const post = await db.Post.findByPk(postId, {
+        include: [ db.User ]
+        // , db.Like, db.Comment
+    });
+
+    if (post) {
+        res.render('post', {
+            title: post.title,
+            post
+        })
+    } else {
+        res.render('page-not-found')
+    }
+
 }))
 
 
