@@ -286,6 +286,14 @@ header {
 }
 
 
+.welcome-back {
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 3px;
+    /* color:#f2f2f2 */
+}
+
+
 @media screen and (max-width: 925px) {
     #full-title, #full-title * {
         color: rgba(255, 255, 255, 0);

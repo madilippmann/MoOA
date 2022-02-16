@@ -121,4 +121,20 @@ router.get('/signout', (req, res) => {
 })
 
 
+router.get('/demo-user', asyncHandler(async (req, res) => {
+  const alec = await db.User.findOne({
+    where: {
+      username: 'alec_has_a_chair'
+    }
+  })
+
+  loginUser(req, res, alec);
+
+  req.session.save(() => {
+    res.redirect('/')
+  })
+  // res.send()
+
+}))
+
 module.exports = router;
