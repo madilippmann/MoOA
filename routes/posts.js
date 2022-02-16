@@ -134,4 +134,21 @@ router.post('/:postId/edit', postValidator, requireAuth, csrfProtection, asyncHa
 }))
 
 
+router.get('/:postId/delete', requireAuth, asyncHandler(async(req, res, next) => {
+    const postId = req.params.postId;
+
+    const post = await db.Post.findByPk(postId);
+
+    if (post && post.user_id === req.session.auth.userId ) {
+        await post.destroy();
+        //TODO redirect to artists gallery
+        res.redirect('/')
+    } else {
+        const err = new Error('Post not found.')
+        next(err)
+    }
+
+
+}))
+
 module.exports = router;

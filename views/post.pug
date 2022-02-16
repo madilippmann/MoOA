@@ -26,7 +26,7 @@ block content
         if userId == post.user_id
             div.edit-delete
                 a(href=""): button(type='button').edit-button Edit
-                a(href="/"): button(type='button').delete-button Delete
+                a(href=`/posts/${post.id}/delete`): button(type='button').delete-button Delete
         .image
             img(src=post.path alt='Artist Post')
         .description
