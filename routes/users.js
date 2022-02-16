@@ -142,15 +142,16 @@ router.get('/demo-user', asyncHandler(async (req, res) => {
 router.get('/:username', asyncHandler(async (req, res, next) => {
   const username = req.params.username
 
+ 
   const user = await db.User.findOne({
-    where: username
+    where: {username}
   })
 
   if (user) {
     //GRAB all the users posts
-    const user_id = user.id
+   
     const posts = await db.Post.findAll({
-      where: user_id
+      where: {user_id: user.id}
     })
 
 
@@ -159,8 +160,7 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
       posts
     })
   } else {
-    const err = new Error('Page not found.')
-    next(err)
+    next()
   }
 
 

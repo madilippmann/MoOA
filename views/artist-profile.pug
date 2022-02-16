@@ -2,7 +2,31 @@ extends layout
 
 append head 
 
+    link(rel="stylesheet" href="/stylesheets/artist-profile.css")
+
 block content 
-    .outer-gallery-container 
+    .grid-outer-container 
         h1= `${user.firstName} ${user.lastName}'s Gallery`
-        h2= `${user.username}`
+        div.username-and-follow
+            h2= `${user.username}` 
+            i(class="fa-solid fa-user-plus follow-icon")
+        .grid
+            each post in posts           
+                .post-container 
+                    img(src=post.path, alt="Artist Post").post-image
+
+                .image-overlay.post-container
+                    a(href="").clickable-post
+                        h1.post-title= post.title
+                        .like-and-comment-container
+                            i(class="fa-solid fa-thumbs-up").like-and-comment-icons
+                            p.count 0
+                            i(class="fa-solid fa-message").like-and-comment-icons
+                            p.count 0
+
+
+
+
+
+
+
