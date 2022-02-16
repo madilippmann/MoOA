@@ -74,3 +74,8 @@
 .image img {
     width: 100%;
 }
+
+.description {
+    margin: 25px;
+    width: 100%;
+}
