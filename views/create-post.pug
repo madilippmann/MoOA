@@ -1,0 +1,21 @@
+extends layout.pug
+include utils.pug
+
+append head
+    link(rel="stylesheet", href="/stylesheets/forms.css")
+
+
+block content
+    div.outer-form-container
+        h1= title
+        +validationErrorSummary(errors)
+        div.form-container
+            form(action="/posts", method="post").form-element
+                input(type="hidden", name="_csrf", value=csrfToken)
+
+                +field("Title", "title", null, 'text')
+                +field("Image URL", "imageURL", null, "text")
+                +field("Description", "description", null, "textarea")
+                div.form-buttons
+                    button(type="submit").btn.signUpButton.orange Submit
+                    button(type="button").btn.signUpButton.cancel: a(href="/") Cancel

@@ -240,6 +240,12 @@ header {
     padding-bottom: 10px;
 }
 
+
+.avatar:hover {
+    opacity: 75%;
+    cursor: pointer;
+}
+
 .info-grey {
     font-size: 25px;
 }
@@ -283,6 +289,14 @@ header {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+}
+
+
+.welcome-back {
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 3px;
+    /* color:#f2f2f2 */
 }
 
 

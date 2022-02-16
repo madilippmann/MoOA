@@ -24,6 +24,8 @@ html
           nav
             ul.navLinks
               li
+                h3.welcome-back= `Welcome back, ${user.firstName}!`
+              li
                 a.createPost(href="/posts/create")
                   i(class="fa-solid fa-square-plus navIcons")
               li

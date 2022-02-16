@@ -4,7 +4,6 @@ const { csrfProtection, asyncHandler, userValidators, loginValidators, validatio
 const db = require('../db/models');
 const bcrypt = require('bcryptjs');
 const { loginUser, logoutUser } = require('../auth');
-const app = require('../app');
 
 // true for logged in , false for logged out
 // const userStatus = res.locals.authenticated
@@ -120,5 +119,21 @@ router.get('/signout', (req, res) => {
   })
 })
 
+
+router.get('/demo-user', asyncHandler(async (req, res) => {
+  const alec = await db.User.findOne({
+    where: {
+      username: 'alec_has_a_chair'
+    }
+  })
+
+  loginUser(req, res, alec);
+
+  req.session.save(() => {
+    res.redirect('/')
+  })
+  // res.send()
+
+}))
 
 module.exports = router;
