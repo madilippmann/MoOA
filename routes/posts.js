@@ -57,15 +57,24 @@ router.get('/:postId', asyncHandler(async (req, res, next) => {
     })
 
     if (post) {
-        res.render('post', {
-            title: post.title,
-            post,
-            comments,
-            userId: req.session.auth.userId,
-            ownsPost: req.session.auth.userId === post.user_id
-        })
+        if (req.session.auth) {
+            res.render('post', {
+                title: post.title,
+                post,
+                comments,
+                userId: req.session.auth.userId,
+                ownsPost: req.session.auth.userId === post.user_id
+            })
+        } else {
+            res.render('post', {
+                title: post.title,
+                post,
+                comments
+            })
+        }
     } else {
-        res.render('page-not-found')
+        const err = new Error('Page Not Found')
+        next(err);
     }
 
 }))

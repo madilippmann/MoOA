@@ -282,13 +282,14 @@ header {
 .main-body {
     position: absolute;
     left: 160px;
-    top: 114px;
+    top: 140px;
     width: calc(100vw - 160px);
     height: calc(100vh - 160px);
     display:flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    overflow-y: scroll;
 }
 
 
