@@ -12,7 +12,7 @@ mixin validationErrorSummary(errors)
 
 mixin field(labelText, fieldName, fieldValue, fieldType = 'text', placeholder = null)
   div.field-container
-    label(for=fieldName)= labelText
+    label(for=fieldName).form-label-text= labelText
     if fieldType === 'textarea'
       textarea(id=fieldName name=fieldName rows='5').form-input.textarea= fieldValue
     else

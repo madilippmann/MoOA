@@ -16,13 +16,13 @@ block content
                 span.likes-num 0
         .artist-date
             span.post-date Date
-            div
-                div
-                    span= `${post.User.firstName} ${post.User.lastName}`
+            div.right-side
+                div.name-and-follow-icon
+                    span.artist-name= `${post.User.firstName} ${post.User.lastName}`
                     if userId != post.user_id
                         button(type='button' class='follow-artist')
                             i(class="fa-solid fa-user-plus follow-icon")
-                span.artistHandle= `\@${post.User.username}`
+                span.artistHandle: a(href=`/${post.User.username}`)= `\@${post.User.username}`
         if userId == post.user_id
             div.edit-delete
                 a(href=""): button(type='button').edit-button Edit
@@ -32,10 +32,13 @@ block content
         .description
             p= post.description
         .comments-outer-container
+            h2.comments-heading Comments
             .comment-form
                 if locals.authenticated 
-                    form(action=`posts/${post.id}/comments` method='post')
-                        +field('Add Comment', "comment", null, 'textarea')
+                    h4.add-comment-text Add Comment
+                    form(action=`posts/${post.id}/comments` method='post').form-element
+                        //- +field(null, "comment", null, 'textarea').comment-textbox
+                        textarea(name="comment").comment-textbox
                         button(type='submit').comment-submit Submit
                 else 
                     a(href="/login").comment-login Please login to post comments. 
