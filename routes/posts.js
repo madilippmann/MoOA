@@ -55,7 +55,8 @@ router.get('/:postId', asyncHandler(async (req, res, next) => {
     if (post) {
         res.render('post', {
             title: post.title,
-            post
+            post,
+            ownsPost: req.session.auth.userId === post.user_id
         })
     } else {
         res.render('page-not-found')

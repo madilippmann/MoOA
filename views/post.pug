@@ -1,8 +1,42 @@
 extends layout.pug
 
+include utils.pug
+
 append head
     //- link css
 
 block content
-    div
-        h1= title
+    
+    div.outer-container
+        div.post-header
+            h1= title
+            div.likes
+                i(class="fa-solid fa-thumbs-up like-icon")
+                //- TODO like count 
+                span 0  
+        .artist-date 
+            span Date 
+            div
+                div 
+                    span= `${post.User.firstName} ${post.User.lastName}`
+                    button(type='button' class='follow-artist') 
+                        i(class="fa-solid fa-user-plus follow-icon")
+                span.artistHandle= `\@${post.User.username}`
+        if ownsPost
+            div.edit-delete
+                a(href=""): button(type='button').edit-button Edit      
+                a(href="/"): button(type='button').delete-button Delete                 
+        .image
+            img(src=post.path alt='Artist Post')
+        .description 
+            p= post.description
+        .comment-container 
+        //- TODO
+        .comment-form 
+            form(action=`posts/${post.id}/comments` method='post')
+                +field('textarea') 
+
+        
+
+                
+
