@@ -65,10 +65,29 @@ router.get('/:postId', asyncHandler(async (req, res, next) => {
             ownsPost: req.session.auth.userId === post.user_id
         })
     } else {
-        res.render('page-not-found')
+        const err = new Error('Page Not Found')
+        next(err)
     }
 
 }))
+
+router.get('/:postId/edit', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+
+    const postId = req.params.postId;
+    const post = await db.Post.findByPk(postId);
+
+    if (post.user_id === req.session.auth.userId) {
+        res.render('edit-post', {
+            title: 'Edit Post',
+            post,
+            csrfToken: req.csrfToken()
+        })
+    } else {
+        const err = new Error('Page Not Found')
+        next(err)
+    }
+}))
+
 
 
 module.exports = router;
