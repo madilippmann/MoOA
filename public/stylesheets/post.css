@@ -1,0 +1,43 @@
+.outer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 50px 150px;
+}
+
+.post-header {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.post-header h1 {
+    display: inline-block;
+    font-size: 40px;
+    font-family: IBM Plex Sans;
+    text-transform: uppercase;
+    font-weight: 350;
+    margin-bottom: 20px;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.likes-num {
+    display: flex;
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+.likes i {
+    margin-left: 20px;
+    font-size: 20px;
+    color: #424242;
+}
+
+.image img {
+    height: 400px;
+}
