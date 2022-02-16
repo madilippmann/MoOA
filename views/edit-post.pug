@@ -10,7 +10,7 @@ block content
         h1= title
         +validationErrorSummary(errors)
         div.form-container
-            form(action="/posts", method="post").form-element
+            form(action=`/posts/${post.id}/edit`, method="post").form-element
                 input(type="hidden", name="_csrf", value=csrfToken)
 
                 +field("Title", "title", post.title, 'text')
@@ -18,4 +18,4 @@ block content
                 +field("Description", "description", post.description, "textarea")
                 div.form-buttons
                     button(type="submit").btn.signUpButton.orange Submit
-                    button(type="button").btn.signUpButton.cancel: a(href="/") Cancel
+                    button(type="button").btn.signUpButton.cancel: a(href=`/posts/${post.id}`) Cancel
