@@ -34,17 +34,16 @@ html
 
       .sideBarContainer.grey
         .sideBar
-            img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
-            .sideBarLinkContainer
-              ul.sideBarUl
-                li
-                  i(class="fa-solid fa-user avatar")
-                li
-                  a(href="") SETTINGS
-                li#bottom-border
-                  a(href="/signout")#logout-btn SIGN OUT
-                li: a(href="https://linktr.ee/alinaqvi1")
-                  i(class="fa-solid fa-circle-info info-grey")
+          a(href="/").logo-home: img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
+          ul.sideBarUl
+            li
+              i(class="fa-solid fa-user avatar")
+            li
+              a(href="") SETTINGS
+            li#bottom-border
+              a(href="/signout")#logout-btn SIGN OUT
+            li: a(href="https://linktr.ee/alinaqvi1")
+              i(class="fa-solid fa-circle-info info-grey")
       .main-body
         block content
 
