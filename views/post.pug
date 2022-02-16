@@ -33,9 +33,12 @@ block content
             p= post.description
         .comments-outer-container
             .comment-form
-                form(action=`posts/${post.id}/comments` method='post')
-                    +field('Add Comment', "comment", null, 'textarea')
-                    button(type='submit').comment-submit Submit
+                if locals.authenticated 
+                    form(action=`posts/${post.id}/comments` method='post')
+                        +field('Add Comment', "comment", null, 'textarea')
+                        button(type='submit').comment-submit Submit
+                else 
+                    a(href="/login").comment-login Please login to post comments. 
             div.comment-list
                 each comment in comments
                     div.comment-container

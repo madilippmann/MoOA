@@ -77,5 +77,8 @@
 
 .description {
     margin: 25px;
-    width: 100%;
+}
+
+.comment-login {
+    color: rgb(235, 163, 30)
 }
