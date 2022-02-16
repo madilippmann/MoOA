@@ -1,0 +1,23 @@
+extends layout.pug
+
+
+block content
+    link(rel="stylesheet", href="/stylesheets/home.css")
+    div.outer-container
+        h1.page-title= title
+        .grid
+            - var imageNumber = 0;
+            each post in posts
+                - ++imageNumber
+                    div(id=`image-${imageNumber}`).post-container
+                        img(src=`static/post-images/${post.imagePath}`, alt="").post-image
+
+                    div(id=`image-${imageNumber}`).post-container.image-overlay
+                            a(href="").clickable-post
+                                h1.post-title= post.title
+                                h3.post-artist= post.artistName
+                                .like-and-comment-container
+                                    img(src="static/icons/like.png", alt="like icon").like-and-comment-icons
+                                    p.count= post.likesCount
+                                    img(src="static/icons/comment.png", alt="like icon").like-and-comment-icons
+                                    p.count= post.commentsCount

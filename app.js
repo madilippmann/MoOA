@@ -11,6 +11,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const { sessionSecret, environment } = require('./config')
 
+
 const app = express();
 
 // view engine setup

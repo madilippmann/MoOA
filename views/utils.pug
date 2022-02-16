@@ -1,3 +1,6 @@
+append head
+  link(rel="stylesheet" href="/stylesheets/forms.css")
+
 mixin validationErrorSummary(errors)
     if errors
         div.error-container
@@ -8,9 +11,9 @@ mixin validationErrorSummary(errors)
 
 
 mixin field(labelText, fieldName, fieldValue, fieldType = 'text', placeholder = null)
-  div
+  div.field-container
     label(for=fieldName)= labelText
     if fieldType === 'textarea'
       textarea(id=fieldName name=fieldName rows='5')= fieldValue
     else
-      input(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=placeholder)
+      input(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=placeholder).form-input

@@ -1,0 +1,293 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    font-size: 11px;
+}
+
+html {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+
+}
+
+a {
+    text-decoration: none;
+    /* Prevent default link from being blue
+    and previously visited link from being purple */
+    color: rgb(0, 0, 0);
+}
+
+body {
+    margin-top: 0;
+    height: 100%;
+    background-color: rgb(241, 241, 241);
+    overflow: hidden;
+}
+
+
+
+
+/* navbar */
+header {
+    /* display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #C4C4C4;
+    height: 90px;
+    margin-top: 50px; */
+
+    position: absolute;
+    /* width: 1440px; */
+    width: 100vw;
+
+    height: 81px;
+    left: 0px;
+    top: 33px;
+
+    background: #C4C4C4;
+}
+
+#header-container {
+    display:flex;
+    margin-left: 175px;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+
+
+.navLinks  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 50px;
+}
+
+.title {
+    font-family: 'Codystar', cursive;
+    font-size: 35px;
+    font-weight: bolder;
+    color: #f2f2f2;
+}
+
+
+
+#of {
+    font-size: 20px;
+}
+
+
+
+.navLinks li {
+   padding: 20px;
+
+}
+
+
+.signInButton {
+    font-size: 14px;
+    width: 100px;
+    height: 30px;
+    background-color: transparent;
+    color: #424242;
+    border: none;
+    border-radius: 3px;
+    transition: background-color .25s linear;
+
+
+
+}
+
+.signInButton:hover {
+    color: grey;
+}
+
+.signUpButton {
+    font-size: 15px;
+    width: 130px;
+    height: 38px;
+    background-color: #424242;
+    color:azure;
+    border: none;
+    border-radius: 3px;
+    transition: background-color .25s linear;
+
+}
+
+.signUpButton:hover {
+    background-color: grey;
+}
+
+.navIcons {
+    font-size: 25px;
+}
+
+.navIcons:hover {
+    color: grey
+}
+
+.site-logo {
+    position: absolute;
+    width: 81px;
+    height: 81px;
+
+    top: 21px;
+
+}
+
+/* sidebar */
+.grey {
+    background-color: #424242;
+}
+
+.sideBarContainer {
+    /* display: flex;
+    justify-content: space-around;
+
+    background-color: #424242;
+    height: 100%;
+    width: 200px;
+    z-index: 1;
+    margin-left: 50px;
+    margin-top: -140px; */
+
+    position: absolute;
+    width: 127px;
+    height: 100vh;
+    left: 33px;
+    top: 0px;
+
+    /* background: #424242; */
+}
+
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.sideBarDiv {
+    background-color: #e7e7e7;
+    width: 70%;
+    height: 100%;
+}
+
+.sideBarLinkContainer {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.logo {
+    margin-top: 12px;
+    max-width: 90px;
+
+}
+
+.logoDiv {
+    height: 150px;
+    background-color: #424242;
+    position: fixed;
+    width: 127px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sideBarUl  {
+    color: #B8B8B8;
+    margin-top: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 25px;
+    align-items: center;
+}
+
+.sideBarUl li {
+    padding-top: 20px;
+}
+
+.sideBarUl a {
+    color: #B8B8B8;
+}
+
+.sideBarUl a:hover {
+    color: #979797;
+}
+
+
+.avatar {
+    font-size: 35px;
+    padding-bottom: 10px;
+}
+
+.info-grey {
+    font-size: 25px;
+}
+
+.info-loggedout {
+    font-size: 25px;
+    color: #6d6d6d;
+}
+.info-loggedout:hover {
+    color: #979797;
+}
+
+/*
+.icon {
+    height: 30px;
+    width: 30px;
+    opacity: 70%;
+    margin-top: 5px;
+
+} */
+
+.icon:hover {
+   opacity: 45%;
+}
+
+
+
+#bottom-border {
+    border-bottom: 1.5px solid #979797;
+    padding-bottom: 30px;
+}
+
+
+.main-body {
+    position: absolute;
+    left: 160px;
+    top: 114px;
+    width: calc(100vw - 160px);
+    height: calc(100vh - 160px);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+
+@media screen and (max-width: 925px) {
+    #full-title, #full-title * {
+        color: rgba(255, 255, 255, 0);
+    }
+}

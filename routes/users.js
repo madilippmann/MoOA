@@ -3,16 +3,11 @@ const router = express.Router();
 const { csrfProtection, asyncHandler, userValidators, loginValidators, validationResult } = require('./utils')
 const db = require('../db/models');
 const bcrypt = require('bcryptjs');
-const { loginUser } = require('../auth');
+const { loginUser, logoutUser } = require('../auth');
+const app = require('../app');
 
-
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-
+// true for logged in , false for logged out
+// const userStatus = res.locals.authenticated
 
 
 
@@ -43,7 +38,9 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async functi
 
       if (passwordMatch) {
         loginUser(req, res, user);
-        return res.redirect('/')
+        return req.session.save(() => {
+          res.redirect('/')
+        })
       }
     }
 
@@ -58,7 +55,7 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async functi
     csrfToken: req.csrfToken(),
     title: "Login",
     email,
-    errors
+    errors,
   })
 
 }));
@@ -96,8 +93,10 @@ router.post('/signup', userValidators, csrfProtection, asyncHandler(async functi
       await user.save();
 
       loginUser(req, res, user);
+      return req.session.save(() => {
+        res.redirect('/')
+      })
 
-      res.redirect('/');
 
   } else {
 
@@ -112,6 +111,14 @@ router.post('/signup', userValidators, csrfProtection, asyncHandler(async functi
 
   }
 }));
+
+
+router.get('/signout', (req, res) => {
+  logoutUser(req, res)
+  req.session.save(() => {
+    res.redirect('/')
+  })
+})
 
 
 module.exports = router;
