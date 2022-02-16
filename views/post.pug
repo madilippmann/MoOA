@@ -6,37 +6,46 @@ append head
     //- link css
 
 block content
-    
+
     div.outer-container
         div.post-header
             h1= title
             div.likes
                 i(class="fa-solid fa-thumbs-up like-icon")
-                //- TODO like count 
-                span 0  
-        .artist-date 
-            span Date 
+                //- TODO like count
+                span 0
+        .artist-date
+            span Date
             div
-                div 
+                div
                     span= `${post.User.firstName} ${post.User.lastName}`
-                    button(type='button' class='follow-artist') 
-                        i(class="fa-solid fa-user-plus follow-icon")
+                    if userId != post.user_id
+                        button(type='button' class='follow-artist')
+                            i(class="fa-solid fa-user-plus follow-icon")
                 span.artistHandle= `\@${post.User.username}`
-        if ownsPost
+        if userId == post.user_id
             div.edit-delete
-                a(href=""): button(type='button').edit-button Edit      
-                a(href="/"): button(type='button').delete-button Delete                 
+                a(href=""): button(type='button').edit-button Edit
+                a(href="/"): button(type='button').delete-button Delete
         .image
             img(src=post.path alt='Artist Post')
-        .description 
+        .description
             p= post.description
-        .comment-container 
-        //- TODO
-        .comment-form 
-            form(action=`posts/${post.id}/comments` method='post')
-                +field('textarea') 
-
-        
-
-                
-
+        .comments-outer-container
+            .comment-form
+                form(action=`posts/${post.id}/comments` method='post')
+                    +field('Add Comment', "comment", null, 'textarea')
+                    button(type='submit').comment-submit Submit
+            div.comment-list
+                each comment in comments
+                    div.comment-container
+                        div.comment-avatar
+                            i(class="fa-solid fa-user")
+                        div.comment-main
+                            h4=`${comment.User.firstName} ${comment.User.lastName}`
+                            p= comment.comment
+                        div.comment-info
+                            span.date Date
+                            if userId == comment.user_id
+                                i(class="fa-solid fa-pen-to-square")
+                                i(class="fa-solid fa-trash-can")

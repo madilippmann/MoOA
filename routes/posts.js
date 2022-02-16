@@ -48,14 +48,20 @@ router.get('/:postId', asyncHandler(async (req, res, next) => {
     const postId = parseInt(req.params.postId, 10);
 
     const post = await db.Post.findByPk(postId, {
-        include: [ db.User ]
+        include: [ db.User, ]
         // , db.Like, db.Comment
     });
+
+    const comments = await db.Comment.findAll({
+        where: { post_id: post.id}
+    })
 
     if (post) {
         res.render('post', {
             title: post.title,
             post,
+            comments,
+            userId: req.session.auth.userId,
             ownsPost: req.session.auth.userId === post.user_id
         })
     } else {
