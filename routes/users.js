@@ -4,7 +4,6 @@ const { csrfProtection, asyncHandler, userValidators, loginValidators, validatio
 const db = require('../db/models');
 const bcrypt = require('bcryptjs');
 const { loginUser, logoutUser } = require('../auth');
-const app = require('../app');
 
 // true for logged in , false for logged out
 // const userStatus = res.locals.authenticated

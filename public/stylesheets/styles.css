@@ -240,6 +240,12 @@ header {
     padding-bottom: 10px;
 }
 
+
+.avatar:hover {
+    opacity: 75%;
+    cursor: pointer;
+}
+
 .info-grey {
     font-size: 25px;
 }
