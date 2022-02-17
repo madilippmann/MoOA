@@ -165,6 +165,7 @@
     color: white;
     text-transform: uppercase;
     padding: 20px;
+    margin-bottom: 10px;
 }
 
 .form-element {
@@ -208,4 +209,50 @@
 
 .comment-login {
     color: rgb(235, 163, 30)
+}
+
+.comment-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-container {
+    background-color: #cccccc;
+    display: grid;
+    grid-template-columns: 10% 75% 15%;
+    margin: 5px 0;
+}
+
+.comment-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-avatar i {
+    font-size: 30px;
+}
+
+.comment-main {
+    padding: 25px 0;
+}
+
+.comment-main > h4 {
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.comment-main p {
+    font-weight: 375;
+}
+
+.comment-info {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 25px 15px 0 0;
+}
+
+.date {
+    text-transform: uppercase;
 }
