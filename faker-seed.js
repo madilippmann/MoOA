@@ -12,8 +12,8 @@ const seedUsers = num => {
             lastName: faker.name.lastName(),
             hashedPassword: bcrypt.hashSync(faker.internet.password()),
             email: faker.internet.email(),
-            createdAt: faker.date.past().toDateString(),
-            updatedAt: faker.date.past().toDateString(),
+            // createdAt: faker.date.past().toDateString(),
+            // updatedAt: faker.date.past().toDateString(),
         }
 
         console.log(user, ',')
@@ -21,4 +21,29 @@ const seedUsers = num => {
     }
 }
 
-seedUsers(19);
+// seedUsers(5);
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+  
+  console.log(getRandomInt(3));
+
+const fakePost = num => {
+    let i = 0;
+
+    while (i < num) {
+        const id = getRandomInt(28);
+        const par = {
+            user_id: id,
+            path: faker.image.avatar(),
+            title: faker.lorem.sentence(),
+            description: faker.lorem.paragraphs(3),
+        }
+
+        console.log(par, ',')
+        i++
+    }
+}
+
+fakePost(2);
