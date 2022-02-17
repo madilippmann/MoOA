@@ -165,17 +165,19 @@
     color: white;
     text-transform: uppercase;
     padding: 20px;
+    margin-bottom: 10px;
 }
 
 .form-element {
-    display: flex;
+    display: grid;
+    grid-template-columns: 85% 15%;
     align-items: flex-start;
     flex-direction: row;
     justify-content: stretch;
 }
 
 .comment-textbox {
-    width: 85%;
+    width: 100%;
     height: 100px;
     margin-bottom: -15px;
     resize: none;
@@ -198,6 +200,7 @@
     margin-left: 20px;
     text-transform: uppercase;
     transition: background-color linear 0.25s;
+    justify-self: center;
 }
 
 .comment-submit:hover {
@@ -206,6 +209,99 @@
 
 }
 
+.submit-icon {
+    display: none;
+    visibility: hidden;
+}
+
+@media screen and (max-width: 800px) {
+    .submit-word {
+        display: none;
+
+    }
+    .submit-icon {
+        display: flex;
+        visibility: visible;
+        justify-content: center;
+
+    }
+
+    .comment-submit {
+        width: 40px;
+    }
+
+    .comment-avatar {
+        visibility: hidden;
+    }
+}
+
 .comment-login {
     color: rgb(235, 163, 30)
+}
+
+.comment-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-container {
+    background-color: #cccccc;
+    display: grid;
+    grid-template-columns: 10% 75% 15%;
+    margin: 5px 0;
+}
+
+.comment-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.comment-avatar i {
+    font-size: 30px;
+}
+
+.comment-main {
+    padding: 25px 0;
+}
+
+.comment-main > h4 {
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.comment-main p {
+    font-weight: 375;
+    font-size: 12px;
+}
+
+.comment-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px 15px 0 0;
+}
+
+.edit-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.edit-delete i {
+    padding: 10px;
+    font-size: 15px;
+}
+
+.trash-comment {
+    position: relative;
+    right: 2px;
+}
+
+.date {
+    text-transform: uppercase;
+    font-weight: 300;
 }

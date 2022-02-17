@@ -34,14 +34,16 @@ block content
         .comments-outer-container
             h2.comments-heading Comments
             .comment-form
-                if locals.authenticated 
+                if locals.authenticated
                     h4.add-comment-text Add Comment
                     form(action=`posts/${post.id}/comments` method='post').form-element
                         //- +field(null, "comment", null, 'textarea').comment-textbox
                         textarea(name="comment").comment-textbox
-                        button(type='submit').comment-submit Submit
-                else 
-                    a(href="/login").comment-login Please login to post comments. 
+                        button(type='submit').comment-submit
+                            span.submit-word Submit
+                            span.submit-icon: i(class="fa-solid fa-message")
+                else
+                    a(href="/login").comment-login Please login to post comments.
             div.comment-list
                 each comment in comments
                     div.comment-container
@@ -53,5 +55,6 @@ block content
                         div.comment-info
                             span.date Date
                             if userId == comment.user_id
-                                i(class="fa-solid fa-pen-to-square")
-                                i(class="fa-solid fa-trash-can")
+                                div.edit-delete
+                                    i(class="fa-solid fa-pen-to-square")
+                                    i(class="fa-solid fa-trash-can trash-comment")
