@@ -10,3 +10,8 @@ npx sequelize model:generate --name Comment --attributes post_id:integer,user_id
 npx sequelize model:generate --name Follower --attributes user_id:integer,follower_id:integer
 
 npx sequelize model:generate --name Like --attributes user_id:integer,post_id:integer
+
+
+install faker:
+
+npm install @faker-js/faker --save-dev
