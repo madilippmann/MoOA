@@ -25,7 +25,7 @@ block content
                 span.artistHandle: a(href=`/${post.User.username}`)= `\@${post.User.username}`
         if userId == post.user_id
             div.edit-delete
-                a(href=""): button(type='button').edit-button Edit
+                a(href=`/posts/${post.id}/edit`): button(type='button').edit-button Edit
                 a(href=`/posts/${post.id}/delete`): button(type='button').delete-button Delete
         .image
             img(src=post.path alt='Artist Post')
