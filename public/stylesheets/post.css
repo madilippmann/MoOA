@@ -169,14 +169,15 @@
 }
 
 .form-element {
-    display: flex;
+    display: grid;
+    grid-template-columns: 85% 15%;
     align-items: flex-start;
     flex-direction: row;
     justify-content: stretch;
 }
 
 .comment-textbox {
-    width: 85%;
+    width: 100%;
     height: 100px;
     margin-bottom: -15px;
     resize: none;
@@ -199,12 +200,39 @@
     margin-left: 20px;
     text-transform: uppercase;
     transition: background-color linear 0.25s;
+    justify-self: center;
 }
 
 .comment-submit:hover {
     color: #000000;
     background-color: #6d6d6d;
 
+}
+
+.submit-icon {
+    display: none;
+    visibility: hidden;
+}
+
+@media screen and (max-width: 800px) {
+    .submit-word {
+        display: none;
+
+    }
+    .submit-icon {
+        display: flex;
+        visibility: visible;
+        justify-content: center;
+
+    }
+
+    .comment-submit {
+        width: 40px;
+    }
+
+    .comment-avatar {
+        visibility: hidden;
+    }
 }
 
 .comment-login {
@@ -227,6 +255,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 10px;
 }
 
 .comment-avatar i {
@@ -240,19 +269,39 @@
 .comment-main > h4 {
     text-transform: uppercase;
     margin-bottom: 5px;
+    font-size: 14px;
 }
 
 .comment-main p {
     font-weight: 375;
+    font-size: 12px;
 }
 
 .comment-info {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding: 25px 15px 0 0;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px 15px 0 0;
+}
+
+.edit-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.edit-delete i {
+    padding: 10px;
+    font-size: 15px;
+}
+
+.trash-comment {
+    position: relative;
+    right: 2px;
 }
 
 .date {
     text-transform: uppercase;
+    font-weight: 300;
 }
