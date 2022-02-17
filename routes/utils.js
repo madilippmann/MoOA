@@ -100,7 +100,7 @@ const postValidator = [
 
 const grabLikes = async(post_id) => {
   const likes = await db.Like.findAll({where: {post_id}})
- 
+
   return likes.length
 
 }
@@ -121,6 +121,8 @@ const grabCommentCount = async(post_id) => {
 
 
 
+
+
 module.exports = {
   csrfProtection,
   asyncHandler,
@@ -131,4 +133,5 @@ module.exports = {
   grabFollows,
   grabLikes,
   grabCommentCount,
+
 };

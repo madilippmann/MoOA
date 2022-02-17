@@ -7,10 +7,10 @@ append head
 block content
     .grid-outer-container
         .user-info
-            h1= `${user.firstName} ${user.lastName}'s Gallery`
+            h1= `${artist.firstName} ${artist.lastName}'s Gallery`
             div.username-and-follow
-                h2= `${user.username}`
-                if userId != user.id
+                h2= `@${artist.username}`
+                if userId != artist.id
                     i(class="fa-solid fa-user-plus follow-icon")
         .grid
             - var i = -1;
