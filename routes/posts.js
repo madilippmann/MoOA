@@ -53,7 +53,8 @@ router.get('/:postId', asyncHandler(async (req, res, next) => {
     });
 
     const comments = await db.Comment.findAll({
-        where: { post_id: post.id}
+        where: { post_id: post.id },
+        include: db.User
     })
 
     if (post) {

@@ -39,8 +39,7 @@ block content
                     form(action=`posts/${post.id}/comments` method='post').form-element
                         //- +field(null, "comment", null, 'textarea').comment-textbox
                         textarea(name="comment").comment-textbox
-                        div.comment-button-container
-                            button(type='submit').comment-submit Submit
+                        button(type='submit').comment-submit Submit
                 else 
                     a(href="/login").comment-login Please login to post comments. 
             div.comment-list

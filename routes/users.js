@@ -157,7 +157,8 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
 
     res.render('artist-profile', {
       user,
-      posts
+      posts,
+      userId: req.session.auth.userId,
     })
   } else {
     next()
