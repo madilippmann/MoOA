@@ -31,12 +31,13 @@ function getRandomInt(max) {
 
 const fakePost = num => {
     let i = 0;
-
+    let imgId = 16;
     while (i < num) {
         const id = getRandomInt(28);
+
         const par = {
             user_id: id,
-            path: faker.image.avatar(),
+            path: `https://mooa-seed.s3.amazonaws.com/seed/${imgId}-image.png`,
             title: faker.lorem.sentence(),
             // description: faker.lorem.paragraphs(3),
             description: faker.lorem.paragraph(),
@@ -44,10 +45,11 @@ const fakePost = num => {
 
         console.log(par, ',')
         i++
+        imgId++
     }
 }
 
-// fakePost(15);
+fakePost(11);
 
 const fakeComment = num => {
     let i = 0;
@@ -66,4 +68,4 @@ const fakeComment = num => {
     }
 }
 
-fakeComment(15);
+// fakeComment(15);
