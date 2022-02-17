@@ -160,26 +160,25 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
     } else {
       userId = -1;
     }
-    let counts = [];
-    posts.forEach(async (post) => {
-      const count = {
-        likesCount: String(await grabLikes(post.id)), 
-        commentsCount: String(await grabCommentCount(post.id))
-      }
-      console.log("count object", count)
-      counts.push(count)
-    })
-    console.log("count array", counts[0].likesCount)
-  
 
+    let counts = [];
+
+    for (let i = 0; i < posts.length; i++) {
+      const post = posts[i];
+
+      let likeCount = await grabLikes(post.id);
+      // likeCount = String(likeCount);
+      const commentCount = await grabCommentCount(post.id)
+
+      const count = { likeCount, commentCount }
+      counts.push(count);
+    }
     
     res.render('artist-profile', {
       user,
       posts,
       userId,
       counts,
-      
-
     })
   } else {
     next()

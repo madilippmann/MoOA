@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { csrfProtection, asyncHandler, validationResult, postValidator } = require('./utils')
+const { csrfProtection, asyncHandler, validationResult, postValidator, grabCommentCount, grabFollows, grabLikes } = require('./utils')
 const db = require('../db/models');
 const { requireAuth } = require('../auth')
 
@@ -58,11 +58,15 @@ router.get('/:postId', asyncHandler(async (req, res, next) => {
     })
 
     if (post) {
+
+        const likesCount = await grabLikes(postId);
+
         if (req.session.auth) {
             res.render('post', {
                 title: post.title,
                 post,
                 comments,
+                likesCount,
                 userId: req.session.auth.userId,
                 ownsPost: req.session.auth.userId === post.user_id
             })
@@ -70,7 +74,8 @@ router.get('/:postId', asyncHandler(async (req, res, next) => {
             res.render('post', {
                 title: post.title,
                 post,
-                comments
+                comments,
+                likesCount
             })
         }
     } else {
