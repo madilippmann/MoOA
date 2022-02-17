@@ -24,10 +24,9 @@ const seedUsers = num => {
 // seedUsers(5);
 
 function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+    return Math.ceil(Math.random() * max);
   }
 
-  console.log(getRandomInt(3));
 
 const fakePost = num => {
     let i = 0;
@@ -49,7 +48,7 @@ const fakePost = num => {
     }
 }
 
-fakePost(11);
+//fakePost(11);
 
 const fakeComment = num => {
     let i = 0;
@@ -68,4 +67,66 @@ const fakeComment = num => {
     }
 }
 
+
+let likePairs = []
+
+const fakeLikes = num => {
+    let i = 0;
+
+    while (i < num) {
+        const user_id = getRandomInt(28)
+        const post_id = getRandomInt(122)
+        const duplicate = likePairs.find(like =>  like.user_id === user_id && like.post_id === post_id)
+        if (duplicate) {
+            continue;
+        }
+        const fakeLikeData = {
+            user_id,
+            post_id,
+        } 
+            console.log(fakeLikeData, ',')
+            likePairs.push(fakeLikeData)
+            i++
+        }
+        
+    }
+
+
+
+
+
+
+
+
+ //fakeLikes(400)
+
+
+
+
 // fakeComment(15);
+
+const fakePairs = []
+
+const fakeFollows = num => {
+    let i = 0
+
+    while (i < num) {
+        const user_id = getRandomInt(28)
+        let follower_id = getRandomInt(28)
+        const duplicate = fakePairs.find(fake =>  fake.user_id === user_id && fake.follower_id === follower_id)
+        if (duplicate) {
+            continue;
+        }
+        const fakeFollowData = {
+            user_id,
+            follower_id,
+        }
+        console.log(fakeFollowData, ',')
+        fakePairs.push(fakeFollowData)
+        i++
+    }
+
+
+}
+
+fakeFollows(250)

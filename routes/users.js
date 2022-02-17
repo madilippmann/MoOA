@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { csrfProtection, asyncHandler, userValidators, loginValidators, validationResult } = require('./utils')
+const { csrfProtection, asyncHandler, userValidators, loginValidators, validationResult, grabCommentCount, grabFollows, grabLikes } = require('./utils')
 const db = require('../db/models');
 const bcrypt = require('bcryptjs');
 const { loginUser, logoutUser } = require('../auth');
@@ -160,11 +160,26 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
     } else {
       userId = -1;
     }
+    let counts = [];
+    posts.forEach(async (post) => {
+      const count = {
+        likesCount: String(await grabLikes(post.id)), 
+        commentsCount: String(await grabCommentCount(post.id))
+      }
+      console.log("count object", count)
+      counts.push(count)
+    })
+    console.log("count array", counts[0].likesCount)
+  
 
+    
     res.render('artist-profile', {
       user,
       posts,
-      userId
+      userId,
+      counts,
+      
+
     })
   } else {
     next()

@@ -13,7 +13,9 @@ block content
                 if userId != user.id
                     i(class="fa-solid fa-user-plus follow-icon")
         .grid
+            - var i = -1;
             each post in posts
+                - ++i
                 .post-container
                     img(src=post.path, alt="Artist Post").post-image
 
@@ -22,6 +24,6 @@ block content
                             h1.post-title= post.title
                             .like-and-comment-container
                                 i(class="fa-solid fa-thumbs-up").like-and-comment-icons
-                                p.count 0
+                                p.count= counts[i].likesCount
                                 i(class="fa-solid fa-message").like-and-comment-icons
-                                p.count 0
+                                p.count= counts[i].commentsCount

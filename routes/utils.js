@@ -98,6 +98,28 @@ const postValidator = [
 ]
 
 
+const grabLikes = async(post_id) => {
+  const likes = await db.Like.findAll({where: {post_id}})
+ 
+  return likes.length
+
+}
+
+
+const grabFollows = async(user_id) => {
+  const follows = await db.Follower.findAll({where: {user_id}})
+  return follows.length
+
+}
+
+
+const grabCommentCount = async(post_id) => {
+  const commentCount = await db.Comment.findAll({where: {post_id}})
+  return commentCount.length
+
+}
+
+
 
 module.exports = {
   csrfProtection,
@@ -105,5 +127,8 @@ module.exports = {
   userValidators,
   loginValidators,
   validationResult,
-  postValidator
+  postValidator,
+  grabFollows,
+  grabLikes,
+  grabCommentCount,
 };
