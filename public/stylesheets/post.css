@@ -285,13 +285,14 @@
     padding: 20px 15px 0 0;
 }
 
-.edit-delete {
+.comment-edit-delete {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    padding-bottom: 10px;
 }
 
-.edit-delete i {
+.comment-edit-delete i {
     padding: 10px;
     font-size: 15px;
 }
