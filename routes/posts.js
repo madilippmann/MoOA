@@ -19,6 +19,8 @@ router.post('/', postValidator, requireAuth, csrfProtection, asyncHandler(async 
 
     const userId = req.session.auth.userId
 
+    
+
     const post = await db.Post.build({
         title,
         user_id: userId,
@@ -61,6 +63,9 @@ router.get('/:postId', asyncHandler(async (req, res, next) => {
 
         const likesCount = await grabLikes(postId);
 
+        let dateString = post.updatedAt.toString().split(' ')
+        dateString = `${dateString[0]} ${dateString[1]} ${dateString[2]} ${dateString[3]}`
+        console.log(dateString)
         if (req.session.auth) {
             res.render('post', {
                 title: post.title,
@@ -68,14 +73,16 @@ router.get('/:postId', asyncHandler(async (req, res, next) => {
                 comments,
                 likesCount,
                 userId: req.session.auth.userId,
-                ownsPost: req.session.auth.userId === post.user_id
+                ownsPost: req.session.auth.userId === post.user_id,
+                dateString
             })
         } else {
             res.render('post', {
                 title: post.title,
                 post,
                 comments,
-                likesCount
+                likesCount,
+                dateString
             })
         }
     } else {
