@@ -10,7 +10,7 @@ const { loginUser, logoutUser } = require('../auth');
 
 
 
-router.get('/login', csrfProtection, function(req, res, next) {
+router.get('/login', csrfProtection, function (req, res, next) {
   res.render('login', {
     csrfToken: req.csrfToken(),
     title: "Login",
@@ -20,7 +20,7 @@ router.get('/login', csrfProtection, function(req, res, next) {
 
 
 
-router.post('/login', loginValidators, csrfProtection, asyncHandler(async function(req, res, next) {
+router.post('/login', loginValidators, csrfProtection, asyncHandler(async function (req, res, next) {
 
   const { email, password } = req.body
   let errors = [];
@@ -60,7 +60,7 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async functi
 }));
 
 
-router.get('/signup', csrfProtection, function(req, res, next) {
+router.get('/signup', csrfProtection, function (req, res, next) {
   res.render('signup', {
     csrfToken: req.csrfToken(),
     title: "Sign Up",
@@ -69,7 +69,7 @@ router.get('/signup', csrfProtection, function(req, res, next) {
 
 });
 
-router.post('/signup', userValidators, csrfProtection, asyncHandler(async function(req, res, next) {
+router.post('/signup', userValidators, csrfProtection, asyncHandler(async function (req, res, next) {
   // if validators fail
 
   const { firstName, lastName, username, email, password } = req.body
@@ -85,16 +85,16 @@ router.post('/signup', userValidators, csrfProtection, asyncHandler(async functi
 
   if (validatorErrors.isEmpty()) {
 
-      const hashedPassword = await bcrypt.hash(password, 12);
+    const hashedPassword = await bcrypt.hash(password, 12);
 
-      user.hashedPassword = hashedPassword;
+    user.hashedPassword = hashedPassword;
 
-      await user.save();
+    await user.save();
 
-      loginUser(req, res, user);
-      return req.session.save(() => {
-        res.redirect('/')
-      })
+    loginUser(req, res, user);
+    return req.session.save(() => {
+      res.redirect('/')
+    })
 
 
   } else {
@@ -133,6 +133,36 @@ router.get('/demo-user', asyncHandler(async (req, res) => {
     res.redirect('/')
   })
   // res.send()
+
+}))
+
+
+//routing for /username
+
+router.get('/:username', asyncHandler(async (req, res, next) => {
+  const username = req.params.username
+
+ 
+  const user = await db.User.findOne({
+    where: {username}
+  })
+
+  if (user) {
+    //GRAB all the users posts
+   
+    const posts = await db.Post.findAll({
+      where: {user_id: user.id}
+    })
+
+
+    res.render('artist-profile', {
+      user,
+      posts
+    })
+  } else {
+    next()
+  }
+
 
 }))
 
