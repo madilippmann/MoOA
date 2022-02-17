@@ -15,7 +15,7 @@ block content
                 //- TODO like count
                 span.likes-num= likesCount
         .artist-date
-            span.post-date Date
+            span.post-date= dateString
             div.right-side
                 div.name-and-follow-icon
                     span.artist-name= `${post.User.firstName} ${post.User.lastName}`
@@ -25,7 +25,7 @@ block content
                 span.artistHandle: a(href=`/${post.User.username}`)= `\@${post.User.username}`
         if userId == post.user_id
             div.edit-delete
-                a(href=""): button(type='button').edit-button Edit
+                a(href=`/posts/${post.id}/edit`): button(type='button').edit-button Edit
                 a(href=`/posts/${post.id}/delete`): button(type='button').delete-button Delete
         .image
             img(src=post.path alt='Artist Post')
