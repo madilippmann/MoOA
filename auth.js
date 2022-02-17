@@ -1,8 +1,10 @@
 const db = require('./db/models');
 
 const loginUser = (req, res, user) => {
+
   req.session.auth = {
-    userId: user.id
+    userId: user.id,
+    firstName: user.firstName
   }
 }
 
@@ -41,9 +43,12 @@ const restoreUser = async(req, res, next) => {
   }
 }
 
+
+
 module.exports = {
   loginUser,
   logoutUser,
   restoreUser,
-  requireAuth
+  requireAuth,
+
 }

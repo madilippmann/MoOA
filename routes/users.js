@@ -141,17 +141,17 @@ router.get('/demo-user', asyncHandler(async (req, res) => {
 
 router.get('/:username', asyncHandler(async (req, res, next) => {
   const username = req.params.username
+  const user = await db.User.findByPk(req.session.auth.userId)
 
- 
-  const user = await db.User.findOne({
+  const artist = await db.User.findOne({
     where: {username}
   })
 
-  if (user) {
+  if (artist) {
     //GRAB all the users posts
-   
+
     const posts = await db.Post.findAll({
-      where: {user_id: user.id}
+      where: {user_id: artist.id}
     })
 
     let userId;
@@ -179,19 +179,23 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
     for (post of posts) {
       const likesCount = await grabLikes(post.id)
       const commentsCount = await grabCommentCount(post.id)
-      
+
       const count = {
         likesCount,
         commentsCount
       }
       counts.push(count)
     }
-    
+
+
+
     res.render('artist-profile', {
       user,
+      artist,
       posts,
       userId,
       counts,
+      sessionUser: req.session.auth.userFirstName
     })
   } else {
     next()
