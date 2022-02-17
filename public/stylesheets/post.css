@@ -7,6 +7,7 @@
     align-items: flex-start;
     margin: 50px 150px;
     font-family: IBM Plex Sans;
+    width: 75%;
 }
 
 .post-header {
@@ -125,6 +126,7 @@
 
 .image {
     width: 100%;
+    min-width: 100%;
 }
 .image img {
     width: 100%;
@@ -167,26 +169,33 @@
 
 .form-element {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: stretch;
 }
 
 .comment-textbox {
-    width: 87%;
+    width: 85%;
     height: 100px;
     margin-bottom: -15px;
     resize: none;
 }
 
+.comment-button-container {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
 .comment-submit {
     align-self: flex-start;
     height: 50px;
-    width: 100px;
+    width: 75px;
     background-color: #acacac;
     color: #424242;
-    font-size: 15px;
+    font-size: 12px;
     border: none;
+    margin-left: 20px;
     text-transform: uppercase;
     transition: background-color linear 0.25s;
 }
