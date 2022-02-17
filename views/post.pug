@@ -36,7 +36,7 @@ block content
             .comment-form
                 if locals.authenticated
                     h4.add-comment-text Add Comment
-                    form(action=`posts/${post.id}/comments` method='post').form-element
+                    form(action=`/posts/${post.id}/comments` method='post').form-element
                         //- +field(null, "comment", null, 'textarea').comment-textbox
                         textarea(name="comment").comment-textbox
                         button(type='submit').comment-submit
