@@ -6,7 +6,7 @@
     /* height: 90%; */
     grid-template-columns: repeat(3, 1fr);
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     grid-gap: 50px;
     margin: auto;
 }
@@ -15,7 +15,7 @@
     box-sizing: border-box;
     /* overflow-y: scroll; */
     position: absolute;
-    /* top: 275px; */
+    top: 275px;
 }
 
 
