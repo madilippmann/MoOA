@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { csrfProtection, asyncHandler, userValidators, loginValidators, validationResult } = require('./utils')
+const { csrfProtection, asyncHandler, userValidators, loginValidators, validationResult, grabCommentCount, grabFollows, grabLikes } = require('./utils')
 const db = require('../db/models');
 const bcrypt = require('bcryptjs');
 const { loginUser, logoutUser } = require('../auth');
@@ -154,10 +154,44 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
       where: {user_id: user.id}
     })
 
+    let userId;
+    if (req.session.auth) {
+      userId = req.session.auth.userId
+    } else {
+      userId = -1;
+    }
 
+    // let counts = [];
+
+    // for (let i = 0; i < posts.length; i++) {
+    //   const post = posts[i];
+
+    //   let likeCount = await grabLikes(post.id);
+    //   // likeCount = String(likeCount);
+    //   const commentCount = await grabCommentCount(post.id)
+
+    //   const count = { likeCount, commentCount }
+    //   counts.push(count);
+    // }
+
+    let counts = [];
+
+    for (post of posts) {
+      const likesCount = await grabLikes(post.id)
+      const commentsCount = await grabCommentCount(post.id)
+      
+      const count = {
+        likesCount,
+        commentsCount
+      }
+      counts.push(count)
+    }
+    
     res.render('artist-profile', {
       user,
-      posts
+      posts,
+      userId,
+      counts,
     })
   } else {
     next()
