@@ -154,11 +154,17 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
       where: {user_id: user.id}
     })
 
+    let userId;
+    if (req.session.auth) {
+      userId = req.session.auth.userId
+    } else {
+      userId = -1;
+    }
 
     res.render('artist-profile', {
       user,
       posts,
-      userId: req.session.auth.userId,
+      userId
     })
   } else {
     next()

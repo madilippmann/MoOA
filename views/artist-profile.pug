@@ -10,7 +10,7 @@ block content
             h1= `${user.firstName} ${user.lastName}'s Gallery`
             div.username-and-follow
                 h2= `${user.username}`
-                if userId != posts.user_id
+                if userId != user.id
                     i(class="fa-solid fa-user-plus follow-icon")
         .grid
             each post in posts
