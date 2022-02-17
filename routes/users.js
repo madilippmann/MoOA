@@ -141,8 +141,15 @@ router.get('/demo-user', asyncHandler(async (req, res) => {
 
 router.get('/:username', asyncHandler(async (req, res, next) => {
   const username = req.params.username
-  const user = await db.User.findByPk(req.session.auth.userId)
-
+  let user;
+  let userId;
+  if (req.session.auth) {
+    userId = req.session.auth.userId
+    user = await db.User.findByPk(req.session.auth.userId)
+  } else {
+    userId = -1;
+  }
+  
   const artist = await db.User.findOne({
     where: {username}
   })
@@ -153,13 +160,6 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
     const posts = await db.Post.findAll({
       where: {user_id: artist.id}
     })
-
-    let userId;
-    if (req.session.auth) {
-      userId = req.session.auth.userId
-    } else {
-      userId = -1;
-    }
 
     // let counts = [];
 
@@ -187,16 +187,27 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
       counts.push(count)
     }
 
+    if (req.session.auth) {
+      res.render('artist-profile', {
+        user,
+        artist,
+        posts,
+        userId,
+        counts,
+        sessionUser: req.session.auth.userFirstName
+      })
+    } else {
 
-
-    res.render('artist-profile', {
-      user,
-      artist,
-      posts,
-      userId,
-      counts,
-      sessionUser: req.session.auth.userFirstName
-    })
+      
+      res.render('artist-profile', {
+        user,
+        artist,
+        posts,
+        userId,
+        counts,
+        
+      })
+    }
   } else {
     next()
   }
