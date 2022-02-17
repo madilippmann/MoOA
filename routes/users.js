@@ -161,17 +161,30 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
       userId = -1;
     }
 
+    // let counts = [];
+
+    // for (let i = 0; i < posts.length; i++) {
+    //   const post = posts[i];
+
+    //   let likeCount = await grabLikes(post.id);
+    //   // likeCount = String(likeCount);
+    //   const commentCount = await grabCommentCount(post.id)
+
+    //   const count = { likeCount, commentCount }
+    //   counts.push(count);
+    // }
+
     let counts = [];
 
-    for (let i = 0; i < posts.length; i++) {
-      const post = posts[i];
-
-      let likeCount = await grabLikes(post.id);
-      // likeCount = String(likeCount);
-      const commentCount = await grabCommentCount(post.id)
-
-      const count = { likeCount, commentCount }
-      counts.push(count);
+    for (post of posts) {
+      const likesCount = await grabLikes(post.id)
+      const commentsCount = await grabCommentCount(post.id)
+      
+      const count = {
+        likesCount,
+        commentsCount
+      }
+      counts.push(count)
     }
     
     res.render('artist-profile', {
