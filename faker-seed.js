@@ -26,19 +26,41 @@ const seedUsers = num => {
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
-  
+
   console.log(getRandomInt(3));
 
 const fakePost = num => {
     let i = 0;
+    let imgId = 16;
+    while (i < num) {
+        const id = getRandomInt(28);
+
+        const par = {
+            user_id: id,
+            path: `https://mooa-seed.s3.amazonaws.com/seed/${imgId}-image.png`,
+            title: faker.lorem.sentence(),
+            // description: faker.lorem.paragraphs(3),
+            description: faker.lorem.paragraph(),
+        }
+
+        console.log(par, ',')
+        i++
+        imgId++
+    }
+}
+
+fakePost(11);
+
+const fakeComment = num => {
+    let i = 0;
 
     while (i < num) {
         const id = getRandomInt(28);
+        const postId = getRandomInt(15);
         const par = {
             user_id: id,
-            path: faker.image.avatar(),
-            title: faker.lorem.sentence(),
-            description: faker.lorem.paragraphs(3),
+            post_id: postId,
+            description: faker.lorem.paragraph(),
         }
 
         console.log(par, ',')
@@ -46,4 +68,4 @@ const fakePost = num => {
     }
 }
 
-fakePost(2);
+// fakeComment(15);
