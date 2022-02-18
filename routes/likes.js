@@ -9,7 +9,7 @@ const { requireAuth } = require('../auth')
 //TODO check if user is logged in
 
 
-router.put('/', asyncHandler(async (req, res, next) => {
+router.put('/', requireAuth, asyncHandler(async (req, res, next) => {
 
     const { postId } = req.body;
 
@@ -95,10 +95,10 @@ router.put('/', asyncHandler(async (req, res, next) => {
 
 // router.delete('/', asyncHandler(async (req, res, next) => {
 //     const { postId } = req.body;
-    
+
 //     const like = await db.Like.findOne({
 //         where: { post_id: postId, user_id: req.session.auth.userId },
-        
+
 //     });
 
 //     if (like) {

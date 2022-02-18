@@ -1,16 +1,15 @@
 const express = require('express');
 const router = express.Router();
-// FIX Grabs seed data from data.js file
-const posts = require('../data.js')
 const { asyncHandler, grabLikes, grabCommentCount } = require("./utils")
-const db = require("../db/models")
+const db = require("../db/models");
+const { requireAuth } = require('../auth.js');
 
 
 /* GET home page. */
 router.get('/', asyncHandler(async (req, res, next) => {
   console.log(res.locals.authenticated);
   const posts = await db.Post.findAll(
-    { 
+    {
       order: [
       ['id', 'DESC']],
       limit: 25
@@ -35,12 +34,43 @@ router.get('/', asyncHandler(async (req, res, next) => {
   }
 
   console.log(posts)
-  res.render('home', { 
-    title: 'Latest Exhibits', 
+  res.render('home', {
+    title: 'Latest Exhibits',
     posts,
     counts,
     sessionUsername
   });
 }));
+
+
+
+router.get('/feed', requireAuth, asyncHandler(async (req, res, next) => {
+  const userId = req.session.auth.userId;
+
+  const follows = await db.Follower.findAll({
+    where: { follower_id: userId },
+    include: {
+      model:
+    }
+  })
+
+  const postIds = Array.from(follows).map(follow => follow.)
+  console.log([...follows]);
+
+  // const posts = await db.Post.findAll({
+  //   where: { user_id: {
+  //     [Op.in]: [...follows]
+  //   }},
+  //   order: [
+  //     ['id', 'DESC']],
+  //     limit: 25
+  // })
+
+
+  res.render('feed', {
+
+  })
+
+}))
 
 module.exports = router;
