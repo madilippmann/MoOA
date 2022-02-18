@@ -152,11 +152,13 @@ router.get('/:postId/delete', requireAuth, asyncHandler(async(req, res, next) =>
     const postId = req.params.postId;
 
     const post = await db.Post.findByPk(postId);
+    console.log(post)
+    const user = await db.User.findByPk(req.session.auth.userId)
 
     if (post && post.user_id === req.session.auth.userId ) {
         await post.destroy();
         //TODO redirect to artists gallery
-        res.redirect('/')
+        res.redirect(`/${user.username}`)
     } else {
         const err = new Error('Post not found.')
         next(err)

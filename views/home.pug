@@ -7,17 +7,19 @@ block content
         h1.page-title= title
         .grid
             - var imageNumber = 0;
+            - var i = -1
             each post in posts
+                - ++i
                 - ++imageNumber
                     div(id=`image-${imageNumber}`).post-container
-                        img(src=`static/post-images/${post.imagePath}`, alt="").post-image
+                        img(src=`${post.path}`, alt="").post-image
 
                     div(id=`image-${imageNumber}`).post-container.image-overlay
-                            a(href="").clickable-post
+                            a(href=`/posts/${post.id}`).clickable-post
                                 h1.post-title= post.title
                                 h3.post-artist= post.artistName
                                 .like-and-comment-container
-                                    img(src="static/icons/like.png", alt="like icon").like-and-comment-icons
-                                    p.count= post.likesCount
-                                    img(src="static/icons/comment.png", alt="like icon").like-and-comment-icons
-                                    p.count= post.commentsCount
+                                    i(class="fa-solid fa-thumbs-up").like-and-comment-icons
+                                    p.count= counts[i].likesCount
+                                    i(class="fa-solid fa-message").like-and-comment-icons
+                                    p.count= counts[i].commentsCount
