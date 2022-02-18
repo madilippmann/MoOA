@@ -180,7 +180,7 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
   } else {
     userId = -1;
   }
-  
+
   const artist = await db.User.findOne({
     where: {username}
   })
@@ -209,9 +209,13 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
 
     let counts = [];
 
-    for (post of posts) {
+    for (let post of posts) {
       const likesCount = await grabLikes(post.id)
       const commentsCount = await grabCommentCount(post.id)
+
+      if (post.title.length > 20) {
+        post.title = `${post.title.split('').slice(0, 20).join('')}...`
+      }
 
       const count = {
         likesCount,
@@ -232,7 +236,7 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
       })
     } else {
 
-      
+
       res.render('artist-profile', {
         user,
         artist,
