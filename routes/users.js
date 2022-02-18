@@ -11,10 +11,16 @@ const { loginUser, logoutUser } = require('../auth');
 
 
 router.get('/login', csrfProtection, function (req, res, next) {
+
+  let sessionUsername;
+  if (req.session.auth) {
+    sessionUsername = req.session.auth.username;
+  }
+
   res.render('login', {
     csrfToken: req.csrfToken(),
     title: "Login",
-
+    sessionUsername
   })
 });
 
@@ -24,6 +30,11 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async functi
 
   const { email, password } = req.body
   let errors = [];
+
+  let sessionUsername;
+  if (req.session.auth) {
+    sessionUsername = req.session.auth.username;
+  }
 
   const validatorErrors = validationResult(req);
 
@@ -55,16 +66,24 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async functi
     title: "Login",
     email,
     errors,
+    sessionUsername,
   })
 
 }));
 
 
 router.get('/signup', csrfProtection, function (req, res, next) {
+
+  let sessionUsername;
+  if (req.session.auth) {
+    sessionUsername = req.session.auth.username;
+  }
+
   res.render('signup', {
     csrfToken: req.csrfToken(),
     title: "Sign Up",
-    user: {}
+    user: {},
+    sessionUsername
   })
 
 });
@@ -73,6 +92,11 @@ router.post('/signup', userValidators, csrfProtection, asyncHandler(async functi
   // if validators fail
 
   const { firstName, lastName, username, email, password } = req.body
+
+  let sessionUsername;
+  if (req.session.auth) {
+    sessionUsername = req.session.auth.username;
+  }
 
   const user = await db.User.build({
     firstName,
@@ -105,7 +129,8 @@ router.post('/signup', userValidators, csrfProtection, asyncHandler(async functi
       csrfToken: req.csrfToken(),
       title: "Sign Up",
       user,
-      errors
+      errors,
+      sessionUsername,
     })
 
   }
@@ -140,6 +165,12 @@ router.get('/demo-user', asyncHandler(async (req, res) => {
 //routing for /username
 
 router.get('/:username', asyncHandler(async (req, res, next) => {
+
+  let sessionUsername;
+  if (req.session.auth) {
+    sessionUsername = req.session.auth.username;
+  }
+
   const username = req.params.username
   let user;
   let userId;
@@ -194,7 +225,8 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
         posts,
         userId,
         counts,
-        sessionUser: req.session.auth.userFirstName
+        sessionUser: req.session.auth.userFirstName,
+        sessionUsername
       })
     } else {
 
@@ -205,7 +237,7 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
         posts,
         userId,
         counts,
-        
+        sessionUsername,
       })
     }
   } else {
