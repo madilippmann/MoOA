@@ -334,7 +334,7 @@ a .delete-comment:hover {
 }
 
 
-.liked {
+i#like-button.like-icon.fa-thumbs-up.liked {
     color: rgba(14, 167, 237, .93);
 
 }
