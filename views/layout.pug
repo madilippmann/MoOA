@@ -29,6 +29,10 @@ html
                 a.createPost(href="/posts/create")
                   i(class="fa-solid fa-square-plus navIcons")
               li
+                a.feed(href="/feed")
+                  i(class="fa-solid fa-newspaper navIcons")
+
+              li
                 a.home(href="/")
                   i(class="fa-solid fa-house-chimney navIcons")
 
@@ -37,7 +41,7 @@ html
           a(href="/").logo-home: img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
           ul.sideBarUl
             li
-              a(href=`/${sessionUsername}`) 
+              a(href=`/${sessionUsername}`)
                 i(class="fa-solid fa-user avatar")
             li
               a(href=`/${sessionUsername}`) SETTINGS
