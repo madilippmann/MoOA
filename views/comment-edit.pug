@@ -1,0 +1,15 @@
+extends layout.pug 
+
+include utils.pug
+
+block content 
+    div.outer-form-container
+        h1= title
+        +validationErrorSummary(errors)
+        div.form-container
+            form(action=`/comments/${commentToEdit.id}/edit`, method="post").form-element
+                input(type="hidden", name="_csrf", value=csrfToken)
+                +field("Comment", "comment", commentToEdit.comment, 'textarea')
+                div.form-buttons
+                    button(type="submit").btn.signUpButton.orange Update
+                    button(type="button").btn.signUpButton.cancel: a(href=`/posts/${postId}`) Cancel

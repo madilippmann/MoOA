@@ -5,15 +5,27 @@ const db = require('../db/models');
 const { requireAuth } = require('../auth')
 
 router.get('/create', requireAuth, csrfProtection, (req, res, next) => {
+
+    let sessionUsername;
+    if (req.session.auth) {
+      sessionUsername = req.session.auth.username;
+    }
+
     res.render('create-post', {
         title: 'Create New Post',
         csrfToken: req.csrfToken(),
-        post: {}
+        post: {},
+        sessionUsername
     })
 })
 
 
 router.post('/', postValidator, requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+
+    let sessionUsername;
+    if (req.session.auth) {
+      sessionUsername = req.session.auth.username;
+    }
 
     const { title, imageURL, description } = req.body;
 
@@ -41,7 +53,8 @@ router.post('/', postValidator, requireAuth, csrfProtection, asyncHandler(async 
             csrfToken: req.csrfToken(),
             title: "Create New Post",
             post,
-            errors
+            errors,
+            sessionUsername
         })
     }
 }))
@@ -49,10 +62,17 @@ router.post('/', postValidator, requireAuth, csrfProtection, asyncHandler(async 
 router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
     const postId = parseInt(req.params.postId, 10);
 
+
     const post = await db.Post.findByPk(postId, {
         include: [ db.User, ]
         // , db.Like, db.Comment
     });
+
+
+    let sessionUsername;
+    if (req.session.auth) {
+      sessionUsername = req.session.auth.username;
+    }
 
     const comments = await db.Comment.findAll({
         where: { post_id: post.id },
@@ -75,7 +95,8 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
                 userId: req.session.auth.userId,
                 ownsPost: req.session.auth.userId === post.user_id,
                 dateString,
-                csrfToken: req.csrfToken()
+                csrfToken: req.csrfToken(),
+                sessionUsername,
             })
         } else {
             res.render('post', {
@@ -83,7 +104,8 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
                 post,
                 comments,
                 likesCount,
-                dateString
+                dateString,
+                sessionUsername,
             })
         }
     } else {
@@ -99,11 +121,17 @@ router.get('/:postId/edit', requireAuth, csrfProtection, asyncHandler(async (req
     const postId = req.params.postId;
     const post = await db.Post.findByPk(postId);
 
+    let sessionUsername;
+    if (req.session.auth) {
+      sessionUsername = req.session.auth.username;
+    }
+
     if (post && post.user_id === req.session.auth.userId) {
         res.render('edit-post', {
             title: 'Edit Post',
             post,
-            csrfToken: req.csrfToken()
+            csrfToken: req.csrfToken(),
+            sessionUsername,
         })
     } else {
         const err = new Error('Page Not Found')
@@ -112,6 +140,11 @@ router.get('/:postId/edit', requireAuth, csrfProtection, asyncHandler(async (req
 }))
 
 router.post('/:postId/edit', postValidator, requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+
+    let sessionUsername;
+    if (req.session.auth) {
+      sessionUsername = req.session.auth.username;
+    }
 
     const postId = parseInt(req.params.postId, 10);
     const { title, imageURL, description } = req.body;
@@ -137,7 +170,8 @@ router.post('/:postId/edit', postValidator, requireAuth, csrfProtection, asyncHa
                 csrfToken: req.csrfToken(),
                 title: "Edit Post",
                 post,
-                errors
+                errors,
+                sessionUsername,
             })
         }
 
