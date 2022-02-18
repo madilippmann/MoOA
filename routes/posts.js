@@ -69,6 +69,7 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
     });
 
     let liked;
+    let follows;
 
     let sessionUsername;
     if (req.session.auth) {
@@ -78,6 +79,13 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
             where: {
                 post_id: postId,
                 user_id: req.session.auth.userId
+            }
+        })
+
+        follows = await db.Follower.findOne({
+            where: {
+                user_id: post.user_id,
+                follower_id: req.session.auth.userId
             }
         })
 
@@ -92,6 +100,7 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
     if (post) {
 
         const likesCount = await grabLikes(postId);
+        const followsCount = await grabFollows(post.user_id)
 
         let dateString = post.updatedAt.toString().split(' ')
         dateString = `${dateString[0]} ${dateString[1]} ${dateString[2]} ${dateString[3]}`
@@ -103,6 +112,8 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
                 comments,
                 liked,
                 likesCount,
+                follows,
+                followsCount,
                 userId: req.session.auth.userId,
                 ownsPost: req.session.auth.userId === post.user_id,
                 dateString,
@@ -115,6 +126,7 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
                 post,
                 comments,
                 likesCount,
+                followsCount,
                 dateString,
                 sessionUsername,
             })

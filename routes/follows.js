@@ -13,7 +13,7 @@ router.put('/', asyncHandler(async (req, res, next) => {
       username: username
     }
   })
-
+  
   const follower = await db.Follower.findOne({
       where: {
           follower_id: req.session.auth.userId,
@@ -21,12 +21,15 @@ router.put('/', asyncHandler(async (req, res, next) => {
       }
   })
 
+
+
   let newFollow;
 
   if (follower) {
       await follower.destroy()
   } else {
-    newFollow = await db.Follow.create({
+    console.log("!!!!!", req.session.auth.userId, "artistId", artist.id);
+    newFollow = await db.Follower.create({
         follower_id: req.session.auth.userId,
         user_id: artist.id
       });

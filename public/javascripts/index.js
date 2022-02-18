@@ -14,13 +14,20 @@ window.addEventListener("DOMContentLoaded", (event)=>{
 
     // follows
 
-    const followButton = document.querySelector(".follow-artist");
+    const isEmpty = obj => {
+        return Object.keys(obj).length === 0;
+    }
+
+    const followButton = document.querySelector(".follow-icon");
 
     followButton.addEventListener('click', async() => {
-        const handleLink = document.getElementById('handle-username');
 
+        const handleLink = document.getElementById('handle-username');
+        const followsCount = document.querySelector('.follows-count')
         const url = handleLink.getAttribute('href');
         const username = url.split('/')[1];
+
+        console.log("+++++++++++")
 
         try {
             const res = await fetch('/follows', {
@@ -37,11 +44,25 @@ window.addEventListener("DOMContentLoaded", (event)=>{
 
             const newFollow = await res.json();
 
+            if (!isEmpty(newFollow)) {
+                // incremenet
+                console.log('Entered conditional');
+                followsCount.innerHTML = Number(followsCount.innerHTML) + 1
+                // likeButton.setAttribute('data-liked', true);
+                followButton.classList.add('followed')
+            } else {
+                // decrement
+                followsCount.innerHTML = Number(followsCount.innerHTML) - 1
+                // delete likeButton.dataset.liked;
+                followButton.classList.remove('followed')
+            }
+
         } catch (err){
             // TODO
         }
 
     })
+
 
 
 
@@ -71,9 +92,6 @@ window.addEventListener("DOMContentLoaded", (event)=>{
 
             console.log(newLike);
 
-            const isEmpty = obj => {
-                return Object.keys(obj).length === 0;
-            }
 
             if (!isEmpty(newLike)) {
                 // incremenet

@@ -69,6 +69,13 @@
     transition: color linear 0.25s;
 }
 
+.follow-artist i {
+    margin-left: 20px;
+    font-size: 30px;
+    color: #424242;
+    transition: color linear 0.25s;
+}
+
 .like-icon:hover {
     color: #E99D2D;
     text-shadow: 1px 1px 3px black;
@@ -133,6 +140,11 @@
 .follow-icon:hover {
     color: #E99D2D;
     text-shadow: 1px 1px 3px black;
+}
+
+.follows-count {
+    font-size: 20px;
+    padding-left: 10px;
 }
 
 .edit-delete {
@@ -359,10 +371,11 @@ a .delete-comment:hover {
 }
 
 
-i#like-button.like-icon.fa-thumbs-up.liked {
+i#like-button.like-icon.fa-thumbs-up.liked, i.follow-icon.followed.fa-user-plus {
     color: rgba(14, 167, 237, .93);
 
 }
+
 
 .comment-profile {
     transition: color linear 0.25s;
