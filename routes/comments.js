@@ -118,7 +118,8 @@ router.post(`/comments/:commentId/edit`, csrfProtection, commentValidator, requi
                 commentToEdit,
                 csrfToken: req.csrfToken(),
                 sessionUsername,
-                errors
+                errors,
+                postId
             })
         }
     }
