@@ -337,6 +337,7 @@ a .delete-comment:hover {
 .liked {
     color: rgb(29, 29, 102);
 }
+
 .comment-profile {
     transition: color linear 0.25s;
 }
