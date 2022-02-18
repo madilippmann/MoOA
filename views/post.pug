@@ -49,7 +49,8 @@ block content
                 each comment in comments
                     div.comment-container
                         div.comment-avatar
-                            i(class="fa-solid fa-user")
+                            a(href=`/${comment.User.username}`) 
+                                i(class="fa-solid fa-user comment-profile")
                         div.comment-main
                             h4=`${comment.User.firstName} ${comment.User.lastName}`
                             p= comment.comment
@@ -57,5 +58,7 @@ block content
                             span.date= comment.createdAt.toDateString()
                             if userId == comment.user_id
                                 div.comment-edit-delete
-                                    i(class="fa-solid fa-pen-to-square")
-                                    i(class="fa-solid fa-trash-can trash-comment")
+                                    a(href=`/comments/${comment.id}/edit`)
+                                        i(class="fa-solid fa-pen-to-square edit-comment")
+                                    a(href=`/comments/${comment.id}/delete`)
+                                        i(class="fa-solid fa-trash-can delete-comment")

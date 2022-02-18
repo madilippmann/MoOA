@@ -17,6 +17,9 @@ block content
                 +field("Password", "password", null, 'password')
                 div.form-buttons
                     button(type="submit").btn.signUpButton.orange Login
-                    button(type="button").btn.signUpButton.cancel: a(href="/") Cancel
+                    a(href="/" class="form-cancel-button")
+                        button(type="button").btn.signUpButton.cancel  Cancel
             .demo-user
-                button(type="button").btn.signUpButton.demo: a(href="/demo-user") Demo User
+                a(href="/demo-user").btn.signUpButton.demo
+                    span.btn-text-demo Demo User
+                //- button(type="button").btn.signUpButton.demo: a(href="/demo-user") Demo User

@@ -1,0 +1,30 @@
+.comment-edit-textarea {
+    height: 200px;
+    width: 50vw;
+    resize: none;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.cmt-buttons {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.signUpButton.cancel.cmt,
+.signUpButton.orange.cmt {
+    height: 75px;
+    width: 250px;
+}
+
+.signUpButton.orange.cmt,
+.signUpButton.cancel.cmt {
+    font-size: 25px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}

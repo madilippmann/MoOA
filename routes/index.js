@@ -29,12 +29,17 @@ router.get('/', asyncHandler(async (req, res, next) => {
     counts.push(count)
   }
 
+  let sessionUsername;
+  if (req.session.auth) {
+    sessionUsername = req.session.auth.username;
+  }
 
   console.log(posts)
   res.render('home', { 
     title: 'Latest Exhibits', 
     posts,
-    counts 
+    counts,
+    sessionUsername
   });
 }));
 
