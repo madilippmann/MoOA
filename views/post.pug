@@ -9,16 +9,14 @@ block content
 
     div.outer-container
         .post-div
-            .fake-div
-            .left-div
-                div.post-header
-                    h1= title
-                    div.likes
-                        i(class="fa-solid fa-thumbs-up like-icon")#like-button
-                        //- TODO like count
-                        span.likes-num= likesCount
-                .image
-                    a(href=post.path).image-link: img(src=post.path alt='Artist Post')
+            div.post-header
+                h1= title
+                div.likes
+                    i(class="fa-solid fa-thumbs-up like-icon")#like-button
+                    //- TODO like count
+                    span.likes-num= likesCount
+            .image
+                a(href=post.path).image-link: img(src=post.path alt='Artist Post')
 
             .right-div
                 div.right-side
@@ -40,34 +38,34 @@ block content
                         a(href=`/posts/${post.id}/edit`): button(type='button').edit-button Edit
                         a(href=`/posts/${post.id}/delete`): button(type='button').delete-button Delete
 
-        .comments-outer-container
-            h2.comments-heading Comments
-            +validationErrorSummary(errors)
-            .comment-form
-                if locals.authenticated
-                    h4.add-comment-text Add Comment
-                    form(action=`/posts/${post.id}` method='post').form-element
-                        input(type="hidden" name="_csrf" value=csrfToken)
-                        textarea(name="comment").comment-textbox
-                        button(type='submit').comment-submit
-                            span.submit-word Submit
-                            span.submit-icon: i(class="fa-solid fa-message")
-                else
-                    a(href="/login").comment-login Please login to post comments.
-            div.comment-list
-                each comment in comments
-                    div.comment-container
-                        div.comment-avatar
-                            a(href=`/${comment.User.username}`)
-                                i(class="fa-solid fa-user comment-profile")
-                        div.comment-main
-                            h4=`${comment.User.firstName} ${comment.User.lastName}`
-                            p= comment.comment
-                        div.comment-info
-                            span.date= comment.createdAt.toDateString()
-                            if userId == comment.user_id
-                                div.comment-edit-delete
-                                    a(href=`/comments/${comment.id}/edit`)
-                                        i(class="fa-solid fa-pen-to-square edit-comment")
-                                    a(href=`/comments/${comment.id}/delete`)
-                                        i(class="fa-solid fa-trash-can delete-comment")
+            .comments-outer-container
+                h2.comments-heading Comments
+                +validationErrorSummary(errors)
+                .comment-form
+                    if locals.authenticated
+                        h4.add-comment-text Add Comment
+                        form(action=`/posts/${post.id}` method='post').form-element
+                            input(type="hidden" name="_csrf" value=csrfToken)
+                            textarea(name="comment").comment-textbox
+                            button(type='submit').comment-submit
+                                span.submit-word Submit
+                                span.submit-icon: i(class="fa-solid fa-message")
+                    else
+                        a(href="/login").comment-login Please login to post comments.
+                div.comment-list
+                    each comment in comments
+                        div.comment-container
+                            div.comment-avatar
+                                a(href=`/${comment.User.username}`)
+                                    i(class="fa-solid fa-user comment-profile")
+                            div.comment-main
+                                h4=`${comment.User.firstName} ${comment.User.lastName}`
+                                p= comment.comment
+                            div.comment-info
+                                span.date= comment.createdAt.toDateString()
+                                if userId == comment.user_id
+                                    div.comment-edit-delete
+                                        a(href=`/comments/${comment.id}/edit`)
+                                            i(class="fa-solid fa-pen-to-square edit-comment")
+                                        a(href=`/comments/${comment.id}/delete`)
+                                            i(class="fa-solid fa-trash-can delete-comment")
