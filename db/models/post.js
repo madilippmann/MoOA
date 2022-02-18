@@ -1,4 +1,5 @@
 "use strict";
+
 module.exports = (sequelize, DataTypes) => {
   const Post = sequelize.define(
     "Post",
@@ -30,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     //   through: "Like",
     //   foreignKey: "post_id",
     //   otherKey: "user_id",
-  
+
 
     // };
 

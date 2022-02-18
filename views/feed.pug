@@ -1,8 +1,24 @@
 extends layout.pug
 
 append head
+    link(rel="stylesheet" href="/stylesheets/artist-profile.css")
 
 
 block content
-    .outer-div
-        h1 "User's Feed"
+    .grid-outer-container
+        .user-info
+            h1.feed-title= title
+        .grid.feed-grid
+            - var i = -1;
+            each post in posts
+                - ++i
+                .post-container.feed-post-item
+                    img(src=post.path, alt="Artist Post").post-image
+                    .image-overlay.post-container.feed-post-item.feed-overlay
+                        a(href=`/posts/${post.id}`).clickable-post
+                            h1.post-title.feed-username= `@${post.User.username}`
+                            .like-and-comment-container
+                                i(class="fa-solid fa-thumbs-up").like-and-comment-icons
+                                p.count= counts[i].likesCount
+                                i(class="fa-solid fa-message").like-and-comment-icons
+                                p.count= counts[i].commentsCount
