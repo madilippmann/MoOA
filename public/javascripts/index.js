@@ -11,6 +11,41 @@ window.addEventListener("DOMContentLoaded", (event)=>{
     //     window.location.href = '/';
     // })
 
+
+    // follows
+
+    const followButton = document.querySelector(".follow-artist");
+
+    followButton.addEventListener('click', async() => {
+        const handleLink = document.getElementById('handle-username');
+
+        const url = handleLink.getAttribute('href');
+        const username = url.split('/')[1];
+
+        try {
+            const res = await fetch('/follows', {
+                method: "PUT",
+                body: JSON.stringify({username}),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            if (!res.ok) {
+                throw res;
+            }
+
+            const newFollow = await res.json();
+
+        } catch (err){
+            // TODO
+        }
+
+    })
+
+
+
+    // likes
     const likeButton = document.getElementById('like-button');
 
     likeButton.addEventListener('click', async () => {
@@ -109,10 +144,10 @@ window.addEventListener("DOMContentLoaded", (event)=>{
         //     }
 
         // }
-        
+
 //         if (!likeButton.dataset.liked) {
 
-            
+
 //             try {
 //                 const res = await fetch('/likes', {
 //                     method: "POST",
@@ -120,7 +155,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
 //                     headers: {
 //                         'Content-Type': 'application/json'
 //                     }
-                    
+
 //                 })
 //                 likesCount.innerHTML = Number(likesCount.innerHTML) + 1
 //                 likeButton.setAttribute('data-liked', true);
@@ -128,7 +163,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
 //                 if (!res.ok) {
 //                     throw res;
 //                 }
-                
+
 //             } catch (err) {
 //                 // TODO
 //             }
