@@ -97,6 +97,11 @@ const postValidator = [
     .withMessage('Please enter a valid image URL'),
 ]
 
+const commentValidator = [
+  check("comment")
+    .exists({ checkFalsy: true })
+    .withMessage("Please enter a value for comment.")
+]
 
 const grabLikes = async(post_id) => {
   const likes = await db.Like.findAll({where: {post_id}})
@@ -133,5 +138,5 @@ module.exports = {
   grabFollows,
   grabLikes,
   grabCommentCount,
-
+  commentValidator
 };

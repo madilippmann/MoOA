@@ -46,7 +46,7 @@ router.post('/', postValidator, requireAuth, csrfProtection, asyncHandler(async 
     }
 }))
 
-router.get('/:postId', asyncHandler(async (req, res, next) => {
+router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
     const postId = parseInt(req.params.postId, 10);
 
     const post = await db.Post.findByPk(postId, {
@@ -74,7 +74,8 @@ router.get('/:postId', asyncHandler(async (req, res, next) => {
                 likesCount,
                 userId: req.session.auth.userId,
                 ownsPost: req.session.auth.userId === post.user_id,
-                dateString
+                dateString,
+                csrfToken: req.csrfToken()
             })
         } else {
             res.render('post', {

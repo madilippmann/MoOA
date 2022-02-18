@@ -33,11 +33,12 @@ block content
             p= post.description
         .comments-outer-container
             h2.comments-heading Comments
+            +validationErrorSummary(errors)
             .comment-form
                 if locals.authenticated
                     h4.add-comment-text Add Comment
-                    form(action=`posts/${post.id}/comments` method='post').form-element
-                        //- +field(null, "comment", null, 'textarea').comment-textbox
+                    form(action=`/posts/${post.id}` method='post').form-element
+                        input(type="hidden" name="_csrf" value=csrfToken)
                         textarea(name="comment").comment-textbox
                         button(type='submit').comment-submit
                             span.submit-word Submit
@@ -53,7 +54,7 @@ block content
                             h4=`${comment.User.firstName} ${comment.User.lastName}`
                             p= comment.comment
                         div.comment-info
-                            span.date Date
+                            span.date= comment.createdAt.toDateString()
                             if userId == comment.user_id
                                 div.comment-edit-delete
                                     i(class="fa-solid fa-pen-to-square")
