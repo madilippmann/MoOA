@@ -120,7 +120,7 @@ const grabFollows = async(user_id) => {
 
 const grabCommentCount = async(post_id) => {
   const commentCount = await db.Comment.findAll({where: {post_id}})
-  return commentCount.length
+  return commentCount.length;
 
 }
 
