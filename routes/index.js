@@ -47,14 +47,15 @@ router.get('/', asyncHandler(async (req, res, next) => {
 router.get('/feed', requireAuth, asyncHandler(async (req, res, next) => {
   const userId = req.session.auth.userId;
 
-  const follows = await db.Follower.findAll({
+  const follows = await db.Follower.findOne({
     where: { follower_id: userId },
     include: {
-      model:
+      model: User,
+      include: Post
     }
   })
 
-  const postIds = Array.from(follows).map(follow => follow.)
+  const postIds = Array.from(follows).map(follow => follow)
   console.log([...follows]);
 
   // const posts = await db.Post.findAll({
