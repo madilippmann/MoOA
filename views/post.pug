@@ -34,7 +34,11 @@ block content
                             span.post-date= dateString
                     if userId != post.user_id
                             button(type='button' class='follow-artist')
-                                i(class="fa-solid fa-user-plus follow-icon")
+                                if follows
+                                    i(class="fa-solid fa-user-plus follow-icon").followed
+                                else
+                                    i(class="fa-solid fa-user-plus follow-icon")
+                                span.follows-count= followsCount
                 .description
                     p= post.description
                 if userId == post.user_id
