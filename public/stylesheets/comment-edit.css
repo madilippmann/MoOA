@@ -21,6 +21,10 @@
 }
 
 .signUpButton.orange.cmt,
-.signUpButton.cancel.cmt a {
+.signUpButton.cancel.cmt {
     font-size: 25px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }

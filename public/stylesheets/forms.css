@@ -81,11 +81,26 @@
     width: 100%;
     height: 50px;
     transition: background-color linear 00.25s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-cancel-button,
+.btn.signUpButton.cancel {
+    cursor: pointer;
+}
+
+.btn-text-demo {
+    color: black;
+    align-self: center;
+    font-size: 15px;
 }
 
 .demo-user {
     display: flex;
     justify-content: center;
+    align-items: center;
     padding-top: 25px;
 }
 
@@ -134,4 +149,5 @@
 
 .form-input.textarea {
     height: 100px;
+    resize: none;
 }
