@@ -44,11 +44,11 @@
 }
 
 
-.blink_me {
-    animation: blinker 1s linear infinite;
+.flashtext {
+    animation: flasher 1s linear infinite;
   }
   
-  @keyframes blinker {
+  @keyframes flasher {
     25% {
         opacing: 0.4
     }
