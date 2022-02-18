@@ -18,10 +18,10 @@ window.addEventListener("DOMContentLoaded", (event)=>{
         return Object.keys(obj).length === 0;
     }
 
-    const followButton = document.querySelector(".follow-artist");
+    const followButton = document.querySelector(".follow-icon");
 
     followButton.addEventListener('click', async() => {
-        
+
         const handleLink = document.getElementById('handle-username');
         const followsCount = document.querySelector('.follows-count')
         const url = handleLink.getAttribute('href');
