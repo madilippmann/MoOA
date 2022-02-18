@@ -189,8 +189,10 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
     //GRAB all the users posts
 
     const posts = await db.Post.findAll({
-      where: {user_id: artist.id}
-    })
+      where: {user_id: artist.id},
+      order: [['updatedAt', 'DESC']]
+    }
+    )
 
     // let counts = [];
 

@@ -12,6 +12,13 @@
 }
 
 
+
+.grid.feed-grid {
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 25px;
+}
+
+
 .grid-outer-container {
     width: 90%;
     height: 95%;
@@ -68,6 +75,12 @@
 
 }
 
+.feed-overlay {
+    bottom: 200px;
+    padding: 25px;
+}
+
+
 .image-overlay img {
     opacity: 0%;
     transition: opacity .25s linear;
@@ -106,6 +119,17 @@ h1.post-title {
     font-weight: bolder;
     font-size: 15px;
     padding: 2px;
+}
+
+h1.feed-title {
+    padding: 15px 0 20px 0;
+    letter-spacing: 1.75pc;
+}
+
+h1.post-title.feed-username {
+    font-weight: 500;
+    font-size: 12px;
+    font-style: italic;
 }
 
 h3.post-artist {
@@ -167,4 +191,9 @@ i.follow-icon:hover {
     /* color: rgba(0, 0, 0, 0); */
     border: 3px solid rgb(241, 241, 241);
     /* text-transform: capitalize ; */
+}
+
+.post-container.feed-post-item {
+    width: 200px;
+    height: 200px
 }
