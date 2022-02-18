@@ -29,7 +29,7 @@ block content
 
                 .handle-date-follow
                     .handle-date
-                        span.artistHandle: a(href=`/${post.User.username}`)= `\@${post.User.username}`
+                        span.artistHandle: a(href=`/${post.User.username}`)#handle-username= `\@${post.User.username}`
                         .artist-date
                             span.post-date= dateString
                     if userId != post.user_id
