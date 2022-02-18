@@ -31,7 +31,7 @@ router.post('/', postValidator, requireAuth, csrfProtection, asyncHandler(async 
 
     const userId = req.session.auth.userId
 
-    
+
 
     const post = await db.Post.build({
         title,
@@ -68,10 +68,20 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
         // , db.Like, db.Comment
     });
 
+    let liked;
 
     let sessionUsername;
     if (req.session.auth) {
-      sessionUsername = req.session.auth.username;
+        sessionUsername = req.session.auth.username;
+
+        liked = await db.Like.findOne({
+            where: {
+                post_id: postId,
+                user_id: req.session.auth.userId
+            }
+        })
+
+
     }
 
     const comments = await db.Comment.findAll({
@@ -91,6 +101,7 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
                 title: post.title,
                 post,
                 comments,
+                liked,
                 likesCount,
                 userId: req.session.auth.userId,
                 ownsPost: req.session.auth.userId === post.user_id,

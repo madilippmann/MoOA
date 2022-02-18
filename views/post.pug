@@ -12,7 +12,11 @@ block content
             div.post-header
                 h1= title
                 div.likes
-                    i(class="fa-solid fa-thumbs-up like-icon")#like-button
+                    if liked
+                        i(class="fa-solid fa-thumbs-up like-icon")#like-button.liked
+                    else
+                        i(class="fa-solid fa-thumbs-up like-icon")#like-button
+
                     //- TODO like count
                     span.likes-num= likesCount
             .image
