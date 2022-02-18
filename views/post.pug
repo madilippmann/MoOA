@@ -8,29 +8,38 @@ append head
 block content
 
     div.outer-container
-        div.post-header
-            h1= title
-            div.likes
-                i(class="fa-solid fa-thumbs-up like-icon")#like-button
-                //- TODO like count
-                span.likes-num= likesCount
-        .artist-date
-            span.post-date= dateString
-            div.right-side
-                div.name-and-follow-icon
-                    span.artist-name= `${post.User.firstName} ${post.User.lastName}`
+        .post-div
+            .fake-div
+            .left-div
+                div.post-header
+                    h1= title
+                    div.likes
+                        i(class="fa-solid fa-thumbs-up like-icon")#like-button
+                        //- TODO like count
+                        span.likes-num= likesCount
+                .image
+                    a(href=post.path).image-link: img(src=post.path alt='Artist Post')
+
+            .right-div
+                div.right-side
+                    div.name-and-follow-icon
+                        span.artist-name= `${post.User.firstName} ${post.User.lastName}`
+
+                .handle-date-follow
+                    .handle-date
+                        span.artistHandle: a(href=`/${post.User.username}`)= `\@${post.User.username}`
+                        .artist-date
+                            span.post-date= dateString
                     if userId != post.user_id
-                        button(type='button' class='follow-artist')
-                            i(class="fa-solid fa-user-plus follow-icon")
-                span.artistHandle: a(href=`/${post.User.username}`)= `\@${post.User.username}`
-        if userId == post.user_id
-            div.edit-delete
-                a(href=`/posts/${post.id}/edit`): button(type='button').edit-button Edit
-                a(href=`/posts/${post.id}/delete`): button(type='button').delete-button Delete
-        .image
-            img(src=post.path alt='Artist Post')
-        .description
-            p= post.description
+                            button(type='button' class='follow-artist')
+                                i(class="fa-solid fa-user-plus follow-icon")
+                .description
+                    p= post.description
+                if userId == post.user_id
+                    div.edit-delete
+                        a(href=`/posts/${post.id}/edit`): button(type='button').edit-button Edit
+                        a(href=`/posts/${post.id}/delete`): button(type='button').delete-button Delete
+
         .comments-outer-container
             h2.comments-heading Comments
             +validationErrorSummary(errors)
@@ -49,7 +58,7 @@ block content
                 each comment in comments
                     div.comment-container
                         div.comment-avatar
-                            a(href=`/${comment.User.username}`) 
+                            a(href=`/${comment.User.username}`)
                                 i(class="fa-solid fa-user comment-profile")
                         div.comment-main
                             h4=`${comment.User.firstName} ${comment.User.lastName}`
