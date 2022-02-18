@@ -149,4 +149,5 @@
 
 .form-input.textarea {
     height: 100px;
+    resize: none;
 }
