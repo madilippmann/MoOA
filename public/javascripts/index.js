@@ -16,25 +16,27 @@ window.addEventListener("DOMContentLoaded", (event)=>{
     likeButton.addEventListener('click', async () => {
         const postUrl = window.location.href.split('/');
         const postId = postUrl[postUrl.length - 1];
-
+        const likesCount = document.querySelector('.likes-num')
+        
         if (!likeButton.dataset.liked) {
 
-            likeButton.setAttribute('data-liked', true);
-            likeButton.classList.add('liked')
-
+            
             try {
-                const res = await fetch('/', {
+                const res = await fetch('/likes', {
                     method: "POST",
-                    body: JSON.stringify(postId),
+                    body: JSON.stringify({postId}),
                     headers: {
                         'Content-Type': 'application/json'
-                        }
+                    }
+                    
                 })
-
+                likesCount.innerHTML = Number(likesCount.innerHTML) + 1
+                likeButton.setAttribute('data-liked', true);
+                likeButton.classList.add('liked')
                 if (!res.ok) {
                     throw res;
                 }
-
+                
             } catch (err) {
                 // TODO
             }
@@ -42,9 +44,9 @@ window.addEventListener("DOMContentLoaded", (event)=>{
         } else {
 
             try {
-                const res = await fetch('/', {
+                const res = await fetch('/likes', {
                     method: "DELETE",
-                    body: JSON.stringify(postId),
+                    body: JSON.stringify({postId}),
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -53,8 +55,8 @@ window.addEventListener("DOMContentLoaded", (event)=>{
                 if (!res.ok) {
                     throw res;
                 }
-
-                delete likeButton.dataset.id;
+                likesCount.innerHTML = Number(likesCount.innerHTML) - 1
+                delete likeButton.dataset.liked;
                 likeButton.classList.remove('liked')
 
             } catch (err) {

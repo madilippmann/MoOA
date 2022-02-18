@@ -45,12 +45,12 @@ app.use(restoreUser)
 store.sync();
 
 
+app.use('/likes', likesRouter);
+app.use('/follows', followsRouter);
 app.use(usersRouter);
 app.use('/', indexRouter);
 app.use('/posts', postsRouter);
 app.use(commentsRouter)
-app.use('/likes', likesRouter);
-app.use('/follows', followsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -4,8 +4,15 @@ const { csrfProtection, asyncHandler, validationResult, postValidator, grabComme
 const db = require('../db/models');
 const { requireAuth } = require('../auth')
 
+
+
+//TODO check if user is logged in
+
+
 router.post('/', asyncHandler(async (req, res, next) => {
+    console.log(req.body)
     const { postId } = req.body;
+    console.log("this is post id", postId)
     const like = await db.Like.create({
         post_id: postId,
         user_id: req.session.auth.userId
@@ -17,8 +24,10 @@ router.post('/', asyncHandler(async (req, res, next) => {
 
 router.delete('/', asyncHandler(async (req, res, next) => {
     const { postId } = req.body;
-    const like = await db.Like.findByPk({
-        where: { postId }
+    
+    const like = await db.Like.findOne({
+        where: { post_id: postId, user_id: req.session.auth.userId },
+        
     });
 
     if (like) {
