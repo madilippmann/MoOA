@@ -28,7 +28,7 @@ block content
                 a(href=`/posts/${post.id}/edit`): button(type='button').edit-button Edit
                 a(href=`/posts/${post.id}/delete`): button(type='button').delete-button Delete
         .image
-            img(src=post.path alt='Artist Post')
+            a(href=post.path): img(src=post.path alt='Artist Post')
         .description
             p= post.description
         .comments-outer-container
@@ -49,7 +49,7 @@ block content
                 each comment in comments
                     div.comment-container
                         div.comment-avatar
-                            a(href=`/${comment.User.username}`) 
+                            a(href=`/${comment.User.username}`)
                                 i(class="fa-solid fa-user comment-profile")
                         div.comment-main
                             h4=`${comment.User.firstName} ${comment.User.lastName}`
