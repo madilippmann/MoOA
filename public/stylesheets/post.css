@@ -3,16 +3,30 @@
     top: 50px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     margin: 0 0 50px 0;
     font-family: IBM Plex Sans;
     width: 90%;
 }
 
+.post-div {
+    /* display: flex;
+    flex-direction: row; */
+    display: grid;
+    position: relative;
+    grid-template-columns: 65% 35%;
+    grid-template-rows: auto 1fr;
+    width: 85%;
+}
+
 .post-header {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    width: 100%;
 }
 
 .post-header h1 {
@@ -21,15 +35,25 @@
     text-transform: uppercase;
     font-weight: 350;
     margin-bottom: 20px;
-    margin-right: 50px;
+    margin-right: 10px;
     padding-bottom: 10px;
+    width: 100%;
+}
+
+.image {
+    grid-column: 1 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
 }
 
 .likes {
     display: flex;
+    height: 100%;
     align-items: flex-end;
     margin: 10px 0;
-    padding-bottom: 27px;
+    padding-bottom: 38px;
 }
 
 .likes-num {
@@ -55,6 +79,7 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    padding-top: 15px;
 }
 
 .artist-name {
@@ -66,6 +91,7 @@
 .artistHandle a {
     font-size: 15px;
     transition: color linear 0.2s;
+    font-style: italic;
 }
 
 .artistHandle a:hover {
@@ -88,7 +114,7 @@
 .name-and-follow-icon {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .follow-artist {
@@ -120,18 +146,11 @@
     width: 100px;
     height: 50px;
     font-size: 15px;
-    margin-right: 20px;
     text-transform: uppercase;
     font-weight: 400;
 }
 
-.image {
-    /* new code */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
+
 
 .image img {
     width: 100%;
@@ -157,8 +176,7 @@
 }
 
 .comments-outer-container {
-    width: 70%;
-    padding-left: 7%;
+    width: 100%;
 }
 
 .comments-heading {
@@ -355,18 +373,14 @@ i#like-button.like-icon.fa-thumbs-up.liked {
     text-shadow: 1px 1px 3px black;
 }
 
-.post-div {
-    display: flex;
-    flex-direction: row;
 
-}
 
-.fake-div {
+/* .fake-div {
     width: 5%;
-}
+} */
 
 .left-div {
-    width: 65%;
+    grid-column: 1 / 2;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -374,13 +388,12 @@ i#like-button.like-icon.fa-thumbs-up.liked {
 }
 
 .right-div {
-    width: 30%;
+    grid-column: 2 / 3;
     display:flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 25px;
-
+    padding-left: 35px;
 }
 
 .handle-date-follow {
