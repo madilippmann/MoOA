@@ -307,3 +307,8 @@
     text-transform: uppercase;
     font-weight: 300;
 }
+
+
+.liked {
+    color: rgb(29, 29, 102);
+}
