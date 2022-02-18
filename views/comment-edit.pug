@@ -1,6 +1,8 @@
 extends layout.pug 
-
 include utils.pug
+
+append head
+    link(rel="stylesheet", href="/stylesheets/comment-edit.css")
 
 block content 
     div.outer-form-container
@@ -9,7 +11,7 @@ block content
         div.form-container
             form(action=`/comments/${commentToEdit.id}/edit`, method="post").form-element
                 input(type="hidden", name="_csrf", value=csrfToken)
-                +field("Comment", "comment", commentToEdit.comment, 'textarea')
-                div.form-buttons
-                    button(type="submit").btn.signUpButton.orange Update
-                    button(type="button").btn.signUpButton.cancel: a(href=`/posts/${postId}`) Cancel
+                textarea(name="comment").comment-edit-textarea= commentToEdit.comment
+                div.cmt-buttons
+                    button(type="submit").btn.signUpButton.orange.cmt Update
+                    button(type="button").btn.signUpButton.cancel.cmt: a(href=`/posts/${postId}`) Cancel
