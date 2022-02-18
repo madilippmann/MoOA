@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { asyncHandler, grabLikes, grabCommentCount } = require("./utils")
+const { asyncHandler, grabLikes, grabCommentCount, sessionUsername } = require("./utils")
 const db = require("../db/models");
 const { requireAuth } = require('../auth.js');
 const Sequelize = require('sequelize');
@@ -60,6 +60,10 @@ router.get('/feed', requireAuth, asyncHandler(async (req, res, next) => {
 
   // console.log(followedIds);
 
+  let sessionUsername;
+  if (req.session.auth) {
+    sessionUsername = req.session.auth.username;
+  }
 
   const posts = await db.Post.findAll({
     where: { user_id: {
@@ -89,7 +93,8 @@ router.get('/feed', requireAuth, asyncHandler(async (req, res, next) => {
   res.render('feed', {
     title: `${req.session.auth.firstName}'s Feed`,
     posts,
-    counts
+    counts,
+    sessionUsername
   })
 
 }))
