@@ -335,7 +335,8 @@ a .delete-comment:hover {
 
 
 .liked {
-    color: rgb(29, 29, 102);
+    color: rgba(14, 167, 237, .93);
+
 }
 
 .comment-profile {
