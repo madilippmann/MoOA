@@ -3,9 +3,9 @@
     top: 50px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 50px 150px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0 0 50px 0;
     font-family: IBM Plex Sans;
     width: 90%;
 }
@@ -158,6 +158,7 @@
 
 .comments-outer-container {
     width: 70%;
+    padding-left: 7%;
 }
 
 .comments-heading {
@@ -373,7 +374,7 @@ i#like-button.like-icon.fa-thumbs-up.liked {
 }
 
 .right-div {
-    width: 20%;
+    width: 30%;
     display:flex;
     flex-direction: column;
     align-items: flex-start;
