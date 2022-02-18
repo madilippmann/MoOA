@@ -69,7 +69,10 @@ window.addEventListener("DOMContentLoaded", (event)=>{
     // likes
     const likeButton = document.getElementById('like-button');
 
+
+
     likeButton.addEventListener('click', async () => {
+
         const postUrl = window.location.href.split('/');
         const postId = postUrl[postUrl.length - 1];
         const likesCount = document.querySelector('.likes-num')
