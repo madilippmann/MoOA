@@ -37,9 +37,10 @@ html
           a(href="/").logo-home: img(class="logo" src="/static/images/logo.jpg", alt="MoOA").site-logo
           ul.sideBarUl
             li
-              i(class="fa-solid fa-user avatar")
+              a(href=`/${sessionUsername}`) 
+                i(class="fa-solid fa-user avatar")
             li
-              a(href="") SETTINGS
+              a(href=`/${sessionUsername}`) SETTINGS
             li#bottom-border
               a(href="/signout")#logout-btn SIGN OUT
             li: a(href="https://linktr.ee/alinaqvi1")

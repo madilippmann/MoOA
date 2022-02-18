@@ -4,7 +4,8 @@ const loginUser = (req, res, user) => {
 
   req.session.auth = {
     userId: user.id,
-    firstName: user.firstName
+    firstName: user.firstName,
+    username: user.username
   }
 }
 
