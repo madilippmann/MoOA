@@ -11,6 +11,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
   console.log(res.locals.authenticated);
   const posts = await db.Post.findAll(
     {
+      include: db.User,
       order: [
       ['id', 'DESC']],
       limit: 25
@@ -18,9 +19,13 @@ router.get('/', asyncHandler(async (req, res, next) => {
 
   let counts = [];
 
-  for (post of posts) {
+  for (let post of posts) {
     const likesCount = await grabLikes(post.id)
     const commentsCount = await grabCommentCount(post.id)
+
+    if (post.title.length > 20) {
+      post.title = `${post.title.split('').slice(0, 20).join('')}...`
+    }
 
     const count = {
       likesCount,
@@ -34,7 +39,6 @@ router.get('/', asyncHandler(async (req, res, next) => {
     sessionUsername = req.session.auth.username;
   }
 
-  console.log(posts)
   res.render('home', {
     title: 'Latest Exhibits',
     posts,

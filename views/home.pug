@@ -17,7 +17,7 @@ block content
                     div(id=`image-${imageNumber}`).post-container.image-overlay
                             a(href=`/posts/${post.id}`).clickable-post
                                 h1.post-title= post.title
-                                h3.post-artist= post.artistName
+                                h3.post-artist= `@${post.User.username}`
                                 .like-and-comment-container
                                     i(class="fa-solid fa-thumbs-up").like-and-comment-icons
                                     p.count= counts[i].likesCount
