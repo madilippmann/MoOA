@@ -10,6 +10,8 @@
 ![database-schema](/assets/readme_images/database-schema-feb14.png)
 
 
+## Technologies
+
 
 
 
