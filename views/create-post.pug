@@ -10,12 +10,19 @@ block content
         h1= title
         +validationErrorSummary(errors)
         div.form-container
-            form(action="/posts", method="post").form-element
-                input(type="hidden", name="_csrf", value=csrfToken)
+            form(action="/posts", method="post").form-element#upload-form
+                input(type="hidden", name="_csrf", value=csrfToken)#token
 
-                +field("Title", "title", post.title, 'text')
-                +field("Image URL", "imageURL", post.path, "text")
-                +field("Description", "description", post.description, "textarea")
+                label(for="title") Title
+                input(type="text", name="title", value=post.title, id="title")
+
+                label(for="description") Description
+                textarea(name="description", cols="30", rows="10", id="description")= post.description
+
+                label(for="file") Upload Art
+                input(type="file", name="file", id="file", accept="image/*", required)
+
                 div.form-buttons
                     button(type="submit").btn.signUpButton.orange Submit
                     a(href="/"): button(type="button").btn.signUpButton.cancel Cancel
+    script(src="/javascripts/file-upload.js")
