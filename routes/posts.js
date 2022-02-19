@@ -4,7 +4,7 @@ const { csrfProtection, asyncHandler, validationResult, postValidator, grabComme
 const db = require('../db/models');
 const { requireAuth } = require('../auth')
 const AWS = require('aws-sdk');
-const { aws_config } = require('./config');
+const { aws_config } = require('../config');
 
 
 router.get('/create', requireAuth, csrfProtection, (req, res, next) => {
