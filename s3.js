@@ -2,9 +2,18 @@
 const AWS = require('aws-sdk');
 
 const { randomBytes } = require('crypto'); // change later
-const { promisify } = require('util') // change later I think?
-const dotenv = require('dotenv');
-dotenv.config();
+// const dotenv = require('dotenv');
+// dotenv.config();
+
+// const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+// const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
+// https://aws.amazon.com/blogs/developer/generate-presigned-url-modular-aws-sdk-javascript/
+// const client = new S3Client(clientParams);
+// const command = new PutObjectCommand(input);
+
+// const url = async () => {
+//     return await getSignedUrl(client, command, { expiresIn: 3600 });
+// }
 
 
 const { aws_config } = require('./config');
@@ -23,14 +32,14 @@ const s3 = new AWS.S3({
 })
 
 
-async function generateUploadURL() {
+async function createUploadURL() {
     // Create random image name - more secure
-    const rawBytes = await randomBytes(16);
-    const imageName = rawBytes.toString('hex');
+    // const key = await randomBytes(20).toString('hex');
 
     const params = ({
         Bucket: bucketName,
-        Key: imageName,
+        // generate random path for added security
+        Key: await randomBytes(20).toString('hex'),
         Expires: 60 // url will expire after 1 min
     });
 
@@ -41,4 +50,4 @@ async function generateUploadURL() {
 }
 
 
-module.exports = { generateUploadURL };
+module.exports = { createUploadURL };

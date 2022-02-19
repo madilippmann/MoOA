@@ -1,8 +1,10 @@
 const uploadForm = document.getElementById('upload-form');
 const imageInput = document.getElementById('file');
 
+console.log("CHECK 1");
 uploadForm.addEventListener("submit", async event => {
     event.preventDefault();
+    console.log("CHECK 2");
     const title = document.getElementById('title').value
 
 
@@ -25,9 +27,7 @@ uploadForm.addEventListener("submit", async event => {
         body: file
     })
 
-    const uploadStatus = await res.json()
 
-    console.log("UPLOAD RESPONSE: ", uploadStatus);
     // Extract path from url to store in db
     const path = url.split('?')[0]
 
@@ -35,7 +35,7 @@ uploadForm.addEventListener("submit", async event => {
 
 
     // Send db info back to server to store image url and title in db
-    const res = await fetch('/add-image', {
+    const addImageRes = await fetch('/add-image', {
         method: "POST",
         body: JSON.stringify({
             path,

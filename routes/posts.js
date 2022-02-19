@@ -212,8 +212,7 @@ router.get('/:postId/delete', requireAuth, asyncHandler(async(req, res, next) =>
     const postId = req.params.postId;
 
     const post = await db.Post.findByPk(postId);
-    console.log(post)
-    const user = await db.User.findByPk(req.session.auth.userId)
+    const user = await db.User.findByPk(req.session.auth.userId);
 
     const region = aws_config.region
     const bucketName = aws_config.bucketName
@@ -227,7 +226,7 @@ router.get('/:postId/delete', requireAuth, asyncHandler(async(req, res, next) =>
     })
 
     const s3 = new AWS.S3()
-    // https://mooa.s3.amazonaws.com/25960408373cf6be5a1f1935c75bf547
+
     let path = post.path.split('/');
     path = path[path.length - 1]
 
@@ -236,11 +235,12 @@ router.get('/:postId/delete', requireAuth, asyncHandler(async(req, res, next) =>
         Key: path
     };
 
-    await s3.deleteObject(params).promise();
+    s3.deleteObject(params, function(err, data) {
+      if (err) console.log(err, err.stack); // an error occurred
+    });
 
     if (post && post.user_id === req.session.auth.userId ) {
         await post.destroy();
-        //TODO redirect to artists gallery
         res.redirect(`/${user.username}`)
     } else {
         const err = new Error('Post not found.')
