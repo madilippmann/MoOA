@@ -5,8 +5,14 @@ const imageInput = document.getElementById('file');
 uploadForm.addEventListener("submit", async event => {
     event.preventDefault();
     const title = document.getElementById('title').value
+
+    if (!title) {
+        break;
+    }
+
     const description = document.getElementById('description').value
     const file = imageInput.files[0];
+
     const token = document.querySelector('#token').getAttribute('value') // grab token to pass back into fetch
 
     console.log(title, description, file);
