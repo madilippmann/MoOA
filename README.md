@@ -75,13 +75,15 @@ Original wireframes - designed with [Figma](https://figma.com)
 
 ### Home Page for Unregistered User
 <!-- ![](/public/static/readme-files/home-feed.png) -->
-<img src="/public/static/readme-files/home-feed.png" alt="home page wireframe" style="width:200px;"/>
+<img src="/public/static/readme-files/home-feed.png" alt="home page wireframe" style="width:800px;"/>
 
 ### User Post for Logged-in User
-![](/public/static/readme-files/user-post-logged-in.png)
+<!-- ![](/public/static/readme-files/user-post-logged-in.png) -->
+<img src="/public/static/readme-files/user-post-logged-in.png" alt="user's post page wireframe" style="width:800px;"/>
 
 ### User Profile for Logged-in User
-![](/public/static/readme-files/user-profile-logged-in.png)
+<!-- ![](/public/static/readme-files/user-profile-logged-in.png) -->
+<img src="/public/static/readme-files/user-profile-logged-in.png" alt="profile page for logged-in user wireframe" style="width:800px;"/>
 
 ## Code Snippets
 
