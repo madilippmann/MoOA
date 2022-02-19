@@ -27,7 +27,7 @@ MoOA is inspired by [Medium](https://medium.com) .
 
 Hosted on Heroku: [Museum of Online Art](https://museum-of-online-art.herokuapp.com/)
 
-## Tech Stack
+## Technologies
 
 MoOA was built using the following technologies:
 <br>
