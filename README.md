@@ -1,29 +1,101 @@
 # MoOA - *Museum of Online Art*
 
-### **Program Authors:** Will Kee, Wan-Yi Lee, Madi Lippmann & Ali Naqvi
+**Program Authors:** Will Kee, Wan-Yi Lee, Madi Lippmann & Ali Naqvi
 
 
+## Table of Contents
+  - [Description](#description)
+  - [Link to live site](#link-to-live-site)
+  - [Technologies](#technologies)
+  - [Features](#features)
+  - [Demo](#demo)
+  - [Database Schema](#database-schema)
+  - [Design](#design)
+  - [Code Snippets](#code-snippets)
+  - [Key Takeaways](#key-takeaways)
+  - [Contributors](#contributors)
+- [Express Project Skeleton](#express-project-skeleton)
+- [TODO](#todo)
+
+## Description
+---
+MoOA - the Museum of Online Art - is an online collective for artists in which they can share their original artworks and other users can like and comment on their work.
+
+MoOA is inspired by [Medium](https://medium.com) .
+
+## Link to live site
+---
+Hosted on Heroku: [Museum of Online Art](https://museum-of-online-art.herokuapp.com/)
+
+## Tech Stack
+---
+MoOA was built using the following technologies:
+<br>
+<br>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" style="width:50px;" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg" style="width:50px;" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg" style="width:50px;" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original-wordmark.svg" style="width:50px;" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-plain-wordmark.svg" style="width:50px;" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-plain-wordmark.svg" style="width:50px;" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" style="width:50px;" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain-wordmark.svg" style="width:50px;" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" style="width:50px;" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" style="width:50px;" />
+
+
+
+## Features
+---
+- Home page displays site's most recent posts
+- A logged-in user's feed displays the most recent posts of artists the user follows
+- Users can upload and post their own artwork
+- Users can comment on other users' artwork
+- Users can like other users' artwork
+- Users can follow other users
+- Users can update their info and add avatars
+- Unregistered users can view all artist posts and comments
+
+## Demo
+---
+### Demo User
+
+![Demo User](/public/static/readme-files/demo-login.gif)
+
+### Create New Post
+
+![Create New Post](/public/static/readme-files/demo-upload.gif)
 
 ## Database Schema
-#### Last Updated: 2/14/21
+---
+Last Updated: 2/14/21
 
-![database-schema](/assets/readme_images/database-schema-feb14.png)
-
-
-## Technologies
+![database-schema](/public/static/readme-files/database-schema-feb14.png)
 
 
+## Design
+---
+Original wireframes - designed with [Figma](https://figma.com)
 
+### Home Page for Unregistered User
+![](/public/static/readme-files/home-feed.png)
 
-# Express Project Skeleton
+### User Post for Logged-in User
+![](/public/static/readme-files/user-post-logged-in.png)
+### User Profile for Logged-in User
+![](/public/static/readme-files/user-profile-logged-in.png)
 
-Use this project skeleton as a starting point for structuring your app. Things to note
-* Sequelize configuration has not yet been added -- you will need to set that up yourself
-* You may find yourself wanting to use javascript -- js files can be added in `public/javascripts` and should be appended to the Pug templates as needed
-* CSS files can go in `public/stylesheets` and also will need to be added to Pug templates
+## Code Snippets
+---
 
+## Key Takeaways
+---
 
+## Contributors
+---
 
-# TODO
-- Wireframes, design choices, research
-- Key takeaways, code snippets, technology used, what have we learned
+<a href="https://github.com/madilippmann/MoOA/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=madilippmann/MoOA" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
