@@ -1,12 +1,9 @@
 const uploadForm = document.getElementById('upload-form');
 const imageInput = document.getElementById('file');
 
-console.log("CHECK 1");
 uploadForm.addEventListener("submit", async event => {
     event.preventDefault();
-    console.log("CHECK 2");
     const title = document.getElementById('title').value
-
 
     const description = document.getElementById('description').value
     const file = imageInput.files[0];
@@ -15,7 +12,6 @@ uploadForm.addEventListener("submit", async event => {
 
     // get secure url from our server
     const { url } = await fetch("/s3Url").then(res => res.json())
-
 
     // post the image directly to the bucket
     // add const res = await fetch to check that res worked
@@ -30,8 +26,6 @@ uploadForm.addEventListener("submit", async event => {
 
     // Extract path from url to store in db
     const path = url.split('?')[0]
-
-    console.log("IMAGE URL: ", path);
 
 
     // Send db info back to server to store image url and title in db
