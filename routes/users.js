@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { csrfProtection, asyncHandler, userValidators, loginValidators, validationResult, grabCommentCount, grabFollows, grabLikes } = require('./utils')
+const { csrfProtection, asyncHandler, userValidators, loginValidators, userEditValidators, validationResult, grabCommentCount, grabFollows, grabLikes } = require('./utils')
 const db = require('../db/models');
 const bcrypt = require('bcryptjs');
-const { loginUser, logoutUser } = require('../auth');
+const { loginUser, logoutUser, requireAuth } = require('../auth');
 
 // true for logged in , false for logged out
 // const userStatus = res.locals.authenticated
@@ -264,77 +264,80 @@ router.get('/:username/edit', csrfProtection,  asyncHandler(async (req, res, nex
     sessionUsername = req.session.auth.username;
   }
 
-  const username = req.params.username
+  // const username = req.params.username
   let user;
   let userId;
   if (req.session.auth) {
     userId = req.session.auth.userId
-    user = await db.User.findByPk(req.session.auth.userId)
+    user = await db.User.findByPk(userId)
   } else {
     userId = -1;
   }
 
-  const artist = await db.User.findOne({
-    where: {username}
-  })
+  // const artist = await db.User.findOne({
+  //   where: {username}
+  // })
 
-  if (artist) {
+  if (user) {
     if (req.session.auth) {
       res.render('edit-user', {
         user,
-        artist,
+        // artist,
         userId,
         sessionUser: req.session.auth.userFirstName,
         sessionUsername,
         csrfToken: req.csrfToken()
       })
     } 
+  } else {
+    const err = new Error('Page Not Found')
+    next(err)
   }
 
 }))
 
-// router.post('/:postId/edit', postValidator, requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
 
-//   let sessionUsername;
-//   if (req.session.auth) {
-//     sessionUsername = req.session.auth.username;
-//   }
+router.post('/:username/edit',requireAuth, userEditValidators, csrfProtection, asyncHandler(async (req, res, next) => {
 
-//   const postId = parseInt(req.params.postId, 10);
-//   const { title, imageURL, description } = req.body;
-//   const post = await db.Post.findByPk(postId);
+  let sessionUsername;
+  if (req.session.auth) {
+    sessionUsername = req.session.auth.username;
+  }
 
-//   post.title = title;
-//   post.path = imageURL;
-//   post.description = description;
+  const userId = req.session.auth.userId
+  const { firstName, lastName } = req.body
+  const user = await db.User.findByPk(userId);
 
-//   if (post.user_id === req.session.auth.userId) {
+  user.firstName = firstName;
+  user.lastName = lastName;
+  user.user_id = userId
+  
+  if (user.user_id === userId) {
 
-//       const validatorErrors = validationResult(req);
+      const validatorErrors = validationResult(req);
 
-//       if (validatorErrors.isEmpty()) {
+      if (validatorErrors.isEmpty()) {
 
-//           await post.save();
-//           res.redirect(`/posts/${postId}`)
+          await user.save();
+          res.redirect(`/${sessionUsername}`)
 
-//       } else {
-//           const errors = validatorErrors.array().map(error => error.msg);
+      } else {
+          const errors = validatorErrors.array().map(error => error.msg);
 
-//           res.render('edit-post', {
-//               csrfToken: req.csrfToken(),
-//               title: "Edit Post",
-//               post,
-//               errors,
-//               sessionUsername,
-//           })
-//       }
+          res.render('edit-user', {
+            user,
+            errors,
+            sessionUser: req.session.auth.userFirstName,
+            sessionUsername,
+            csrfToken: req.csrfToken()
+          })
+      }
 
-//   } else {
-//       const err = new Error('Page Not Found')
-//       next(err)
-//   }
-// }))
-
+  } else {
+      const err = new Error('Page Not Found')
+      next(err)
+  }
+}))
 
 
 

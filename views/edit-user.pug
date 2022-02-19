@@ -9,7 +9,7 @@ block content
         h1 Edit User Info
         +validationErrorSummary(errors)
         div.form-container
-            form(action="/signup", method="post").form-element
+            form(action=`/${sessionUsername}/edit`, method="post").form-element
                 input(type="hidden", name="_csrf", value=csrfToken)
 
                 +field("First Name", "firstName", user.firstName, 'text')

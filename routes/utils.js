@@ -86,27 +86,7 @@ const userEditValidators = [
     .exists({ checkFalsy: true })
     .withMessage("Please enter a value for Last Name.")
     .isLength({ max: 50 }),
-  check("email")
-    .exists({ checkFalsy: true })
-    .withMessage("Please enter a value for Email Address.")
-    .isLength({ max: 255 })
-    .withMessage("Email Address cannot be longer than 255 characters.")
-    .isEmail()
-    .withMessage("Please enter a valid Email Address.")
-    .custom((value) => {
-      return db.User.findOne({ where: { email: value } }).then(
-        (user) => {
-          if (user) {
-            return Promise.reject(
-              "The provided Email Address is already in use by another account."
-            );
-          }
-        }
-      );
-    }),
-
 ];
-
 
 
 const loginValidators = [
@@ -173,5 +153,6 @@ module.exports = {
   grabFollows,
   grabLikes,
   grabCommentCount,
-  commentValidator
+  commentValidator,
+  userEditValidators,
 };
