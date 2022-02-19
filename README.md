@@ -18,17 +18,17 @@
 - [TODO](#todo)
 
 ## Description
----
+
 MoOA - the Museum of Online Art - is an online collective for artists in which they can share their original artworks and other users can like and comment on their work.
 
 MoOA is inspired by [Medium](https://medium.com) .
 
 ## Link to live site
----
+
 Hosted on Heroku: [Museum of Online Art](https://museum-of-online-art.herokuapp.com/)
 
 ## Tech Stack
----
+
 MoOA was built using the following technologies:
 <br>
 <br>
@@ -46,7 +46,7 @@ MoOA was built using the following technologies:
 
 
 ## Features
----
+
 - Home page displays site's most recent posts
 - A logged-in user's feed displays the most recent posts of artists the user follows
 - Users can upload and post their own artwork
@@ -57,7 +57,6 @@ MoOA was built using the following technologies:
 - Unregistered users can view all artist posts and comments
 
 ## Demo
----
 ### Demo User
 
 ![Demo User](/public/static/readme-files/demo-login.gif)
@@ -67,14 +66,12 @@ MoOA was built using the following technologies:
 ![Create New Post](/public/static/readme-files/demo-upload.gif)
 
 ## Database Schema
----
 Last Updated: 2/14/21
 
 ![database-schema](/public/static/readme-files/database-schema-feb14.png)
 
 
 ## Design
----
 Original wireframes - designed with [Figma](https://figma.com)
 
 ### Home Page for Unregistered User
@@ -86,13 +83,11 @@ Original wireframes - designed with [Figma](https://figma.com)
 ![](/public/static/readme-files/user-profile-logged-in.png)
 
 ## Code Snippets
----
 
 ## Key Takeaways
----
+
 
 ## Contributors
----
 
 <a href="https://github.com/madilippmann/MoOA/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=madilippmann/MoOA" />
