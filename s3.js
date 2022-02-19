@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 
-const { aws_keys, aws_config } = require('./config');
+const { aws_config } = require('./config');
 
 const region = aws_config.region
 const bucketName = aws_config.bucketName

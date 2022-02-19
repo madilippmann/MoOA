@@ -3,6 +3,9 @@ const router = express.Router();
 const { csrfProtection, asyncHandler, validationResult, postValidator, grabCommentCount, grabFollows, grabLikes } = require('./utils')
 const db = require('../db/models');
 const { requireAuth } = require('../auth')
+const AWS = require('aws-sdk');
+const { aws_config } = require('./config');
+
 
 router.get('/create', requireAuth, csrfProtection, (req, res, next) => {
 
@@ -211,6 +214,29 @@ router.get('/:postId/delete', requireAuth, asyncHandler(async(req, res, next) =>
     const post = await db.Post.findByPk(postId);
     console.log(post)
     const user = await db.User.findByPk(req.session.auth.userId)
+
+    const region = aws_config.region
+    const bucketName = aws_config.bucketName
+    const accessKeyId = aws_config.accessKeyId
+    const secretAccessKey = aws_config.secretAccessKey
+
+    AWS.config.update({
+        secretAccessKey,
+        accessKeyId,
+        region
+    })
+
+    const s3 = new AWS.S3()
+    // https://mooa.s3.amazonaws.com/25960408373cf6be5a1f1935c75bf547
+    let path = post.path.split('/');
+    path = path[path.length - 1]
+
+    const params = {
+        Bucket: bucketName,
+        Key: path
+    };
+
+    await s3.deleteObject(params).promise();
 
     if (post && post.user_id === req.session.auth.userId ) {
         await post.destroy();
