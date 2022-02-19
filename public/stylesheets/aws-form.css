@@ -1,0 +1,98 @@
+.outer-form-container.aws {
+    top: 35px;
+}
+
+#upload-form.aws {
+    display: flex;
+    flex-direction: column;    
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+}
+
+div.aws-input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    align-items: center;
+}
+
+
+.label-aws-form {
+    font-weight: 400;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.single-line-input-aws {
+    height: 40px;
+    padding: 10px;
+    font-weight: 400;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+
+}
+
+.textarea-input-aws {
+    height: 100px;
+    padding: 10px;
+    font-weight: 400;
+    resize: none;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+
+.upload-aws-button {
+    height: 50px;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+/* .form-buttons.aws button {
+    margin: 0 30px;
+} */
+
+div.aws-input-group.custom {
+    width: 100%;
+}
+
+input[type="file"] {
+    display: none;
+} 
+
+.custom-aws-upload {
+    display: flex;
+    color: white;
+    height: 40px;
+    grid-column: 2 / 3;
+    padding: 5px 10px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(175, 175, 175);
+    transition: background-color linear 0.25s;
+    border-radius: 5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.295);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.295);
+    width: 100%;
+}
+
+.file-uploaded {
+    background-color: rgba(14, 167, 237, 0.93)
+}
+
+.custom-aws-upload:hover {
+    background-color: rgb(95, 95, 95);
+}
+
+.form-buttons.aws {
+    margin-top: 50px;
+    width: 100%;
+    justify-content: space-evenly;
+}
