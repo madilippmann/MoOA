@@ -14,8 +14,7 @@
   - [Code Snippets](#code-snippets)
   - [Key Takeaways](#key-takeaways)
   - [Contributors](#contributors)
-- [Express Project Skeleton](#express-project-skeleton)
-- [TODO](#todo)
+
 
 ## Description
 
