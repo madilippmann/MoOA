@@ -13,13 +13,13 @@ const region = aws_config.region
 const bucketName = aws_config.bucketName
 const accessKeyId = aws_config.accessKeyId
 const secretAccessKey = aws_config.secretAccessKey
-
+const signatureVersion = aws_config.signatureVersion
 
 const s3 = new AWS.S3({
     region,
     accessKeyId,
     secretAccessKey,
-    signatureVersion: 'v4'
+    signatureVersion
 })
 
 

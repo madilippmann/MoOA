@@ -1,6 +1,5 @@
 const uploadForm = document.getElementById('upload-form');
 const imageInput = document.getElementById('file');
-console.log("CHECK");
 
 uploadForm.addEventListener("submit", async event => {
     event.preventDefault();
@@ -18,7 +17,7 @@ uploadForm.addEventListener("submit", async event => {
 
     // post the image directly to the bucket
     // add const res = await fetch to check that res worked
-    await fetch(url, {
+    const res = await fetch(url, {
         method: "PUT",
         headers: {
             "Content-Type": "multipart/form-data"
@@ -26,7 +25,9 @@ uploadForm.addEventListener("submit", async event => {
         body: file
     })
 
+    const uploadStatus = await res.json()
 
+    console.log("UPLOAD RESPONSE: ", uploadStatus);
     // Extract path from url to store in db
     const path = url.split('?')[0]
 
