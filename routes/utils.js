@@ -74,6 +74,41 @@ const userValidators = [
     }),
 ];
 
+
+
+const userEditValidators = [
+  check("firstName")
+    .exists({ checkFalsy: true })
+    .withMessage("Please enter a value for First Name.")
+    .isLength({ max: 50 })
+    .withMessage("First Name cannot be longer than 50 characters."),
+  check("lastName")
+    .exists({ checkFalsy: true })
+    .withMessage("Please enter a value for Last Name.")
+    .isLength({ max: 50 }),
+  check("email")
+    .exists({ checkFalsy: true })
+    .withMessage("Please enter a value for Email Address.")
+    .isLength({ max: 255 })
+    .withMessage("Email Address cannot be longer than 255 characters.")
+    .isEmail()
+    .withMessage("Please enter a valid Email Address.")
+    .custom((value) => {
+      return db.User.findOne({ where: { email: value } }).then(
+        (user) => {
+          if (user) {
+            return Promise.reject(
+              "The provided Email Address is already in use by another account."
+            );
+          }
+        }
+      );
+    }),
+
+];
+
+
+
 const loginValidators = [
   check("email")
     .exists({ checkFalsy: true })
