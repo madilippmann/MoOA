@@ -13,7 +13,7 @@ block content
         div.form-container.aws
             form(action="/posts", method="post").form-element#upload-form.aws
                 input(type="hidden", name="_csrf", value=csrfToken)#token
-                
+
                 div.aws-input-group
                     label(for="title").label-aws-form Title
                     input(type="text", name="title", value=post.title, id="title").single-line-input-aws
@@ -29,5 +29,5 @@ block content
                 div.form-buttons.aws
                     button(type="submit").btn.signUpButton.orange Submit
                     a(href="/"): button(type="button").btn.signUpButton.cancel Cancel
-    script(src="/javascripts/file-upload.js")
     script(src="/javascripts/custom-upload.js")
+    script(src="/javascripts/file-upload.js")

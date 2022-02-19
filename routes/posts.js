@@ -30,7 +30,7 @@ router.post('/', postValidator, requireAuth, csrfProtection, asyncHandler(async 
       sessionUsername = req.session.auth.username;
     }
 
-    const { title, imageURL, description } = req.body;
+    const { title, path, description } = req.body;
 
     const userId = req.session.auth.userId
 
@@ -39,7 +39,7 @@ router.post('/', postValidator, requireAuth, csrfProtection, asyncHandler(async 
     const post = await db.Post.build({
         title,
         user_id: userId,
-        path: imageURL,
+        path,
         description
     });
 
