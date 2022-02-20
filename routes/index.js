@@ -6,9 +6,7 @@ const { requireAuth } = require('../auth.js');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-/* GET home page. */
 router.get('/', asyncHandler(async (req, res, next) => {
-  console.log(res.locals.authenticated);
   const posts = await db.Post.findAll(
     {
       include: db.User,

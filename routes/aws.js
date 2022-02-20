@@ -17,8 +17,6 @@ router.post('/add-image', requireAuth, csrfProtection, asyncHandler(async (req, 
 
   const { path, title, description } = req.body
 
-  console.log("PATH: ", path);
-
   const newImage = await db.Post.create({
     user_id,
     title,
