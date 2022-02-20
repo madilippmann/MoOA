@@ -195,6 +195,7 @@
 .form-buttons.avatarButton i {
     font-size: 45px;
     margin-right: 20px;
+    margin-bottom: 30px;
 }
 
 .btn.signUpButton.avatarButton.cancel {
