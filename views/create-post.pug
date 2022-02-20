@@ -13,10 +13,10 @@ block content
         div.form-container.aws
             form(action="/posts", method="post").form-element#upload-form.aws
                 input(type="hidden", name="_csrf", value=csrfToken)#token
-                
+
                 div.aws-input-group
                     label(for="title").label-aws-form Title
-                    input(type="text", name="title", value=post.title, id="title").single-line-input-aws
+                    input(type="text", name="title", value=post.title, id="title" required).single-line-input-aws
 
                 div.aws-input-group
                     label(for="description").label-aws-form Description
