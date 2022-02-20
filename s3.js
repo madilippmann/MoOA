@@ -26,6 +26,8 @@ async function createUploadURL() {
         Expires: 60 // url will expire after 1 min
     });
 
+    console.log("PARAMS: ", params);
+
     console.log("CHECK BEFORE GETTING SIGNED URL");
     const uploadURL = await s3.getSignedUrlPromise('putObject', params)
 
