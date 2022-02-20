@@ -13,6 +13,7 @@ const postsRouter = require('./routes/posts');
 const likesRouter = require('./routes/likes');
 const followsRouter = require('./routes/follows');
 const commentsRouter = require('./routes/comments')
+const awsRouter = require('./routes/aws')
 const { sessionSecret, environment } = require('./config')
 
 const app = express();
@@ -51,6 +52,10 @@ app.use(usersRouter);
 app.use('/', indexRouter);
 app.use('/posts', postsRouter);
 app.use(commentsRouter)
+app.use(awsRouter)
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

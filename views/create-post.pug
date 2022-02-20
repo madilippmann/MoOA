@@ -3,19 +3,31 @@ include utils.pug
 
 append head
     link(rel="stylesheet", href="/stylesheets/forms.css")
+    link(rel="stylesheet", href="/stylesheets/aws-form.css")
 
 
 block content
-    div.outer-form-container
+    div.outer-form-container.aws
         h1= title
         +validationErrorSummary(errors)
-        div.form-container
-            form(action="/posts", method="post").form-element
-                input(type="hidden", name="_csrf", value=csrfToken)
+        div.form-container.aws
+            form(action="/posts", method="post").form-element#upload-form.aws
+                input(type="hidden", name="_csrf", value=csrfToken)#token
 
-                +field("Title", "title", post.title, 'text')
-                +field("Image URL", "imageURL", post.path, "text")
-                +field("Description", "description", post.description, "textarea")
-                div.form-buttons
+                div.aws-input-group
+                    label(for="title").label-aws-form Title
+                    input(type="text", name="title", value=post.title, id="title" required).single-line-input-aws
+
+                div.aws-input-group
+                    label(for="description").label-aws-form Description
+                    textarea(name="description", cols="30", rows="10", id="description").textarea-input-aws= post.description
+
+                div.aws-input-group.custom
+                    label(for="file").custom-aws-upload.file-name Upload Art
+                        input(type="file", name="file", id="file", accept="image/*", required).upload-aws-button
+
+                div.form-buttons.aws
                     button(type="submit").btn.signUpButton.orange Submit
                     a(href="/"): button(type="button").btn.signUpButton.cancel Cancel
+    script(src="/javascripts/file-upload.js")
+    script(src="/javascripts/custom-upload.js")

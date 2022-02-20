@@ -94,11 +94,11 @@ const postValidator = [
     .withMessage("Please enter a title.")
     .isLength({ max: 255 })
     .withMessage("Title can only be 255 characters long."),
-  check("imageURL")
-    .exists({ checkFalsy: true })
-    .withMessage("Please enter an image URL.")
-    .isURL() // isURL({ protocols: ['https'] })
-    .withMessage('Please enter a valid image URL'),
+  // check("imageURL")
+  //   .exists({ checkFalsy: true })
+  //   .withMessage("Please enter an image URL.")
+  //   .isURL() // isURL({ protocols: ['https'] })
+  //   .withMessage('Please enter a valid image URL'),
 ]
 
 const commentValidator = [
