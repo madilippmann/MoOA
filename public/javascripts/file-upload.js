@@ -5,6 +5,10 @@ uploadForm.addEventListener("submit", async event => {
     event.preventDefault();
     const title = document.getElementById('title').value
 
+    // if (!title) {
+    //     break;
+    // }
+
     const description = document.getElementById('description').value
     const file = imageInput.files[0];
 
