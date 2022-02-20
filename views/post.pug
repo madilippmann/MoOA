@@ -71,7 +71,7 @@ block content
                             div.comment-container
                                 div.comment-avatar
                                     a(href=`/${comment.User.username}`)
-                                        if locals.authenticated
+                                        if comment.User.avatar_path
                                             img(src=comment.User.avatar_path, alt="User's avatar")#user-avatar.comment
                                         else
                                             i(class="fa-solid fa-user comment-profile")
