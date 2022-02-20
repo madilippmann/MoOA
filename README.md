@@ -65,9 +65,7 @@ MoOA was built using the following technologies:
 ![Create New Post](/public/static/readme-files/demo-upload.gif)
 
 ## Database Schema
-Last Updated: 2/14/21
-
-![database-schema](/public/static/readme-files/database-schema-feb19.png)
+![](/public/static/readme-files/database-schema-feb19.png)
 
 
 ## Design
