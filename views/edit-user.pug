@@ -20,5 +20,11 @@ block content
                     button(type="submit").btn.signUpButton.orange.edit Edit
                     a(href="/"): button(type="button").btn.signUpButton.cancel  Cancel
                 
-                div.form-buttons.avatarButton    
-                    a(href="/edit-avatar"): button(type="button").btn.signUpButton.avatarButton.cancel  Edit Avatar
+
+                
+                div.form-buttons.avatarButton
+                    if user.avatar_path
+                        img(src=user.avatar_path, alt="User's avatar")
+                    else
+                        i(class="fa-solid fa-user avatarIconEdit")    
+                    a(href=`/${sessionUsername}/avatar/edit`): button(type="button").btn.signUpButton.avatarButton.cancel  Edit Avatar

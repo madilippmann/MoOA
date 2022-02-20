@@ -3,9 +3,9 @@ const imageInput = document.getElementById('file');
 
 uploadForm.addEventListener("submit", async event => {
     event.preventDefault();
-    const title = document.getElementById('title').value
+    
 
-    const description = document.getElementById('description').value
+   
     const file = imageInput.files[0];
 
     const token = document.querySelector('#token').getAttribute('value') // grab token to pass back into fetch
@@ -28,25 +28,25 @@ uploadForm.addEventListener("submit", async event => {
 
     // Extract path from url to store in db
     const path = url.split('?')[0]
-
+    let userNameUrl = window.location.href
+    let userName = userNameUrl.split("/")[3]
 
     // Send db info back to server to store image url and title in db
-    const addImageRes = await fetch('/add-avatar', {
+    const addImageRes = await fetch(`\/${userName}/avatar/edit`, {
         method: "POST",
         body: JSON.stringify({
             path,
-            title,
-            description
         }),
         headers: {
             'Accept': 'application/json',
             'CSRF-Token': token, // include csrfToken in req header
             "Content-type": 'application/json'
-            }
+        }
     })
-
-
+    
+    
     // Redirect
-    window.location.href = "/";
-
+    window.location.href = `\/${userName}/edit`;
+    
 })
+
