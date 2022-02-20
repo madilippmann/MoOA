@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { csrfProtection, asyncHandler, validationResult, postValidator, grabCommentCount, grabFollows, grabLikes } = require('./utils')
+const { csrfProtection, asyncHandler, validationResult, postValidator, grabFollows, grabLikes } = require('./utils')
 const db = require('../db/models');
 const { requireAuth } = require('../auth')
 const AWS = require('aws-sdk');
@@ -22,45 +22,21 @@ router.get('/create', requireAuth, csrfProtection, (req, res, next) => {
     })
 })
 
+router.post('/', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
 
-router.post('/', postValidator, requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
-
-    let sessionUsername;
-    if (req.session.auth) {
-      sessionUsername = req.session.auth.username;
-    }
-
-    const { title, path, description } = req.body;
-
-    const userId = req.session.auth.userId
-
-
-
-    const post = await db.Post.build({
-        title,
-        user_id: userId,
-        path,
-        description
-    });
-
-    const validatorErrors = validationResult(req);
-
-    if (validatorErrors.isEmpty()) {
-        await post.save();
-
-        res.redirect(`/posts/${post.id}`)
-    } else {
-        const errors = validatorErrors.array().map(error => error.msg);
-
-        res.render('create-post', {
-            csrfToken: req.csrfToken(),
-            title: "Create New Post",
-            post,
-            errors,
-            sessionUsername
-        })
-    }
-}))
+    const user_id = req.session.auth.userId;
+  
+    const { path, title, description } = req.body
+  
+    const newImage = await db.Post.create({
+      user_id,
+      title,
+      path,
+      description
+    })
+  
+    res.json(newImage)
+  }))
 
 router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
     const postId = parseInt(req.params.postId, 10);
@@ -90,8 +66,6 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
                 follower_id: req.session.auth.userId
             }
         })
-
-
     }
 
     const comments = await db.Comment.findAll({
@@ -107,7 +81,6 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
 
         let dateString = post.updatedAt.toString().split(' ')
         dateString = `${dateString[0]} ${dateString[1]} ${dateString[2]} ${dateString[3]}`
-        // console.log(dateString)
         if (req.session.auth) {
             res.render('post', {
                 title: post.title,
@@ -137,9 +110,7 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
     } else {
         const err = new Error('Page Not Found')
         next(err);
-
     }
-
 }))
 
 router.get('/:postId/edit', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
@@ -248,8 +219,6 @@ router.get('/:postId/delete', requireAuth, asyncHandler(async(req, res, next) =>
         const err = new Error('Post not found.')
         next(err)
     }
-
-
 }))
 
 module.exports = router;

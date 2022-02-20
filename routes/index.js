@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { asyncHandler, grabLikes, grabCommentCount, sessionUsername } = require("./utils")
+const { asyncHandler, grabLikes, grabCommentCount } = require("./utils")
 const db = require("../db/models");
 const { requireAuth } = require('../auth.js');
 const Sequelize = require('sequelize');
@@ -35,7 +35,6 @@ router.get('/', asyncHandler(async (req, res, next) => {
   let sessionUsername;
   if (req.session.auth) {
     const user = await db.User.findByPk(req.session.auth.userId)
-    console.log("AVATAR PATH: ", user.avatar_path)
     sessionUsername = req.session.auth.username;
     res.render('home', {
       title: 'Latest Exhibits',

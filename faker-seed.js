@@ -114,4 +114,4 @@ const fakeFollows = num => {
     }
 }
 
-fakeFollows(250)
+// fakeFollows(250)
