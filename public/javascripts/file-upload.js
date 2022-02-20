@@ -20,6 +20,11 @@ uploadForm.addEventListener("submit", async event => {
     } catch (err) {
         console.log(err);
     }
+    if (url) {
+        console.log("URL: ", url);
+    } else {
+        console.log("NO URL CREATED");
+    }
 
     // post the image directly to the bucket
     // add const res = await fetch to check that res worked
