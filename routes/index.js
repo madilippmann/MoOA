@@ -35,7 +35,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
   let sessionUsername;
   if (req.session.auth) {
     const user = await db.User.findByPk(req.session.auth.userId)
-
+    console.log("AVATAR PATH: ", user.avatar_path)
     sessionUsername = req.session.auth.username;
     res.render('home', {
       title: 'Latest Exhibits',
