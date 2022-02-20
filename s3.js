@@ -11,6 +11,13 @@ const accessKeyId = aws_config.accessKeyId
 const secretAccessKey = aws_config.secretAccessKey
 const signatureVersion = aws_config.signatureVersion
 
+console.log("\n\nR: ", region)
+console.log("\n\nBN: ", bucketName)
+console.log("\n\nAKI: ", accessKeyId)
+console.log("\n\nSAK: ", secretAccessKey)
+console.log("\n\nSV: ", signatureVersion)
+
+
 const s3 = new AWS.S3({
     region,
     accessKeyId,
