@@ -5,10 +5,6 @@ uploadForm.addEventListener("submit", async event => {
     event.preventDefault();
     const title = document.getElementById('title').value
 
-    // if (!title) {
-    //     break;
-    // }
-
     const description = document.getElementById('description').value
     const file = imageInput.files[0];
 
@@ -16,10 +12,6 @@ uploadForm.addEventListener("submit", async event => {
 
     // get secure url from our server
     const { url } = await fetch("/s3Url").then(res => res.json())
-    // try {
-    // } catch (err) {
-    //     console.log(err);
-    // }
 
     console.log("URL: ", url);
 
