@@ -14,8 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Follower.associate = function (models) {
-    //
-  };
+  Follower.associate = function (models) {};
   return Follower;
 };

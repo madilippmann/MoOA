@@ -1,20 +1,7 @@
 
 const AWS = require('aws-sdk');
 
-const { randomBytes } = require('crypto'); // change later
-// const dotenv = require('dotenv');
-// dotenv.config();
-
-// const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
-// const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
-// https://aws.amazon.com/blogs/developer/generate-presigned-url-modular-aws-sdk-javascript/
-// const client = new S3Client(clientParams);
-// const command = new PutObjectCommand(input);
-
-// const url = async () => {
-//     return await getSignedUrl(client, command, { expiresIn: 3600 });
-// }
-
+const { randomBytes } = require('crypto');
 
 const { aws_config } = require('./config');
 
@@ -44,8 +31,7 @@ async function createUploadURL() {
     });
 
     const uploadURL = await s3.getSignedUrlPromise('putObject', params)
-    console.log(uploadURL);
-    return uploadURL
+    return uploadURL;
 }
 
 

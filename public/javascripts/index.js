@@ -1,22 +1,6 @@
 window.addEventListener("DOMContentLoaded", (event)=>{
-    console.log("hello from javascript!")
 
-    // const demoButton = document.querySelector('.demo');
-
-    // demoButton.addEventListener("click", (event) => {
-    //     const res = await fetch('/demo-user')
-
-    //     const login = await res.json()
-
-    //     window.location.href = '/';
-    // })
-
-
-    // follows
-
-    const isEmpty = obj => {
-        return Object.keys(obj).length === 0;
-    }
+    const isEmpty = obj => Object.keys(obj).length === 0;
 
     const followButton = document.querySelector(".follow-icon");
 
@@ -26,8 +10,6 @@ window.addEventListener("DOMContentLoaded", (event)=>{
         const followsCount = document.querySelector('.follows-count')
         const url = handleLink.getAttribute('href');
         const username = url.split('/')[1];
-
-        console.log("+++++++++++")
 
         try {
             const res = await fetch('/follows', {
@@ -46,7 +28,7 @@ window.addEventListener("DOMContentLoaded", (event)=>{
 
             if (!isEmpty(newFollow)) {
                 // incremenet
-                console.log('Entered conditional');
+                // console.log('Entered conditional');
                 followsCount.innerHTML = Number(followsCount.innerHTML) + 1
                 // likeButton.setAttribute('data-liked', true);
                 followButton.classList.add('followed')

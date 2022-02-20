@@ -7,7 +7,7 @@ append head
 block content
     .grid-outer-container
         .user-info
-            h1.feed-title= title
+            h1.feed-title= `${sessionUsername}\'s Feed`
         .grid.feed-grid
             - var i = -1;
             each post in posts
