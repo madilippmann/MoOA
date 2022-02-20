@@ -23,6 +23,10 @@ const userValidators = [
     .exists({ checkFalsy: true })
     .withMessage("Please enter a value for Username.")
     .isLength({ max: 50 })
+    .matches(/^(?!posts)(?!login)(?!signup)(?!likes)(?!follows)(?!comments)(?!feed)(?!demo-user)(?!add-image)(?!s3url).+$/)
+    .withMessage("Username unavailable.")
+    .matches(/^[a-zA-Z0-9\.\_\-]+$/, "g")
+    .withMessage('Username can only contain numbers, letters, and selected characters (.-_).')
     .custom((value) => {
       return db.User.findOne({ where: { username: value } }).then(
         (user) => {
