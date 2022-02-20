@@ -1,4 +1,4 @@
-# <img src="/public/static/images/logo.jpg width="100px"> MoOA - *Museum of Online Art*
+# <img src="/public/static/images/logo.jpg" alt="profile page for logged-in user wireframe" style="width:50px;"/>   MoOA - *Museum of Online Art* 
 
 **Program Authors:** Will Kee, Wan-Yi Lee, Madi Lippmann & Ali Naqvi
 
