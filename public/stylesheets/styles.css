@@ -301,6 +301,15 @@ header {
 }
 
 
+
+#user-avatar {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+
 @media screen and (max-width: 1200px) {
     #full-title, #full-title * {
         color: rgba(255, 255, 255, 0);

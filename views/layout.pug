@@ -42,7 +42,10 @@ html
           ul.sideBarUl
             li
               a(href=`/${sessionUsername}`)
-                i(class="fa-solid fa-user avatar")
+                if user.avatar_path
+                  img(src=user.avatar_path, alt="User's avatar")#user-avatar
+                else
+                  i(class="fa-solid fa-user avatar")
             li
               a(href=`/${sessionUsername}/edit`) SETTINGS
             li#bottom-border
