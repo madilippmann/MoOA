@@ -58,13 +58,12 @@ router.get('/feed', requireAuth, asyncHandler(async (req, res, next) => {
 
   const followedIds = follows.map(follow => follow.user_id)
 
-  // console.log(followedIds);
-
   let sessionUsername;
   if (req.session.auth) {
     sessionUsername = req.session.auth.username;
   }
 
+  
   const posts = await db.Post.findAll({
     where: { user_id: {
       [Op.in]: followedIds
@@ -91,7 +90,7 @@ router.get('/feed', requireAuth, asyncHandler(async (req, res, next) => {
 
 
   res.render('feed', {
-    title: `${req.session.auth.firstName}'s Feed`,
+    // title: `${user.firstName}'s Feed`,
     posts,
     counts,
     sessionUsername
