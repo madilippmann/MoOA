@@ -121,6 +121,11 @@
     background-color: #b47312;
 }
 
+.signUpButton.orange.edit:hover {
+    transition-duration: 0.25s;
+    background-color: #b47312;
+}
+
 .signUpButton.cancel:hover {
     transition-duration: 0.25s;
     background-color: #424242;
@@ -152,4 +157,32 @@
 .form-input.textarea {
     height: 100px;
     resize: none;
+}
+
+
+.form-buttons.editButtons {
+    margin-top: 25px;
+}
+
+
+.form-element.avatarButton {
+    width: 100%;
+}
+
+.form-buttons.avatarButton a{
+    width: 100%;
+}   
+
+
+
+.btn.signUpButton.avatarButton.cancel {
+    background-color: #a8a8a8;
+    margin-bottom: 50px;
+    margin-top: 150px;
+    width: 100%;
+    
+}
+
+.btn.signUpButton.avatarButton.cancel:hover {
+    background-color: rgba(14, 167, 237, 0.93);
 }

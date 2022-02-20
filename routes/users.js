@@ -340,6 +340,45 @@ router.post('/:username/edit',requireAuth, userEditValidators, csrfProtection, a
 }))
 
 
+router.get('/:username/avatar/edit', csrfProtection,  asyncHandler(async (req, res, next) => {
+
+
+  let sessionUsername;
+  if (req.session.auth) {
+    sessionUsername = req.session.auth.username;
+  }
+
+  // const username = req.params.username
+  let user;
+  let userId;
+  if (req.session.auth) {
+    userId = req.session.auth.userId
+    user = await db.User.findByPk(userId)
+  } else {
+    userId = -1;
+  }
+
+  // const artist = await db.User.findOne({
+  //   where: {username}
+  // })
+
+  if (user) {
+    if (req.session.auth) {
+      res.render('edit-avatar', {
+        user,
+        // artist,
+        userId,
+        sessionUser: req.session.auth.userFirstName,
+        sessionUsername,
+        csrfToken: req.csrfToken()
+      })
+    } 
+  } else {
+    const err = new Error('Page Not Found')
+    next(err)
+  }
+
+}))
 
 
 

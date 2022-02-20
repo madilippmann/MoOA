@@ -9,13 +9,16 @@ block content
         h1 Edit User Info
         +validationErrorSummary(errors)
         div.form-container
-            form(action=`/${sessionUsername}/edit`, method="post").form-element
+            form(action=`/${sessionUsername}/edit`, method="post").form-element.avatarButton
                 input(type="hidden", name="_csrf", value=csrfToken)
 
                 +field("First Name", "firstName", user.firstName, 'text')
                 +field("Last Name", "lastName", user.lastName, 'text')
 
 
-                div.form-buttons
-                    button(type="submit").btn.signUpButton.orange Edit
+                div.form-buttons.editButtons
+                    button(type="submit").btn.signUpButton.orange.edit Edit
                     a(href="/"): button(type="button").btn.signUpButton.cancel  Cancel
+                
+                div.form-buttons.avatarButton    
+                    a(href="/edit-avatar"): button(type="button").btn.signUpButton.avatarButton.cancel  Edit Avatar
