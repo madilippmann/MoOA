@@ -90,7 +90,6 @@ router.get('/feed', requireAuth, asyncHandler(async (req, res, next) => {
 
 
   res.render('feed', {
-    // title: `${user.firstName}'s Feed`,
     posts,
     counts,
     sessionUsername

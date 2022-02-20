@@ -107,7 +107,7 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
 
         let dateString = post.updatedAt.toString().split(' ')
         dateString = `${dateString[0]} ${dateString[1]} ${dateString[2]} ${dateString[3]}`
-        console.log(dateString)
+        // console.log(dateString)
         if (req.session.auth) {
             res.render('post', {
                 title: post.title,

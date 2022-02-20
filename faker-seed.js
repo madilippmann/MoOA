@@ -38,7 +38,6 @@ const fakePost = num => {
             user_id: id,
             path: `https://mooa-seed.s3.amazonaws.com/seed/${imgId}-image.png`,
             title: faker.lorem.sentence(),
-            // description: faker.lorem.paragraphs(3),
             description: faker.lorem.paragraph(),
         }
 
@@ -91,22 +90,10 @@ const fakeLikes = num => {
         
     }
 
-
-
-
-
-
-
-
- //fakeLikes(400)
-
-
-
-
+//fakeLikes(400)
 // fakeComment(15);
 
 const fakePairs = []
-
 const fakeFollows = num => {
     let i = 0
 
@@ -125,8 +112,6 @@ const fakeFollows = num => {
         fakePairs.push(fakeFollowData)
         i++
     }
-
-
 }
 
 fakeFollows(250)

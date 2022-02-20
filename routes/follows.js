@@ -28,7 +28,7 @@ router.put('/', asyncHandler(async (req, res, next) => {
   if (follower) {
       await follower.destroy()
   } else {
-    console.log("!!!!!", req.session.auth.userId, "artistId", artist.id);
+    // console.log("!!!!!", req.session.auth.userId, "artistId", artist.id);
     newFollow = await db.Follower.create({
         follower_id: req.session.auth.userId,
         user_id: artist.id
