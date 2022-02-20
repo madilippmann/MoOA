@@ -12,9 +12,7 @@ block content
         div.form-container
             form(action=`/posts/${post.id}/edit`, method="post").form-element
                 input(type="hidden", name="_csrf", value=csrfToken)
-
                 +field("Title", "title", post.title, 'text')
-                //- +field("Image URL", "imageURL", post.path, "text")
                 +field("Description", "description", post.description, "textarea")
                 div.form-buttons
                     button(type="submit").btn.signUpButton.orange Submit

@@ -8,7 +8,6 @@ const db = require('../db/models')
 
 const { check, validationResult } = require('express-validator')
 
-
 const userValidators = [
   check("firstName")
     .exists({ checkFalsy: true })
@@ -78,8 +77,6 @@ const userValidators = [
     }),
 ];
 
-
-
 const userEditValidators = [
   check("firstName")
     .exists({ checkFalsy: true })
@@ -92,7 +89,6 @@ const userEditValidators = [
     .isLength({ max: 50 }),
 ];
 
-
 const loginValidators = [
   check("email")
     .exists({ checkFalsy: true })
@@ -102,18 +98,12 @@ const loginValidators = [
     .withMessage("Please enter your password."),
 ];
 
-
 const postValidator = [
   check("title")
     .exists({ checkFalsy: true })
     .withMessage("Please enter a title.")
     .isLength({ max: 255 })
     .withMessage("Title can only be 255 characters long."),
-  // check("imageURL")
-  //   .exists({ checkFalsy: true })
-  //   .withMessage("Please enter an image URL.")
-  //   .isURL() // isURL({ protocols: ['https'] })
-  //   .withMessage('Please enter a valid image URL'),
 ]
 
 const commentValidator = [
@@ -124,28 +114,18 @@ const commentValidator = [
 
 const grabLikes = async(post_id) => {
   const likes = await db.Like.findAll({where: {post_id}})
-
   return likes.length
-
 }
-
 
 const grabFollows = async(user_id) => {
   const follows = await db.Follower.findAll({where: {user_id}})
   return follows.length
-
 }
-
 
 const grabCommentCount = async(post_id) => {
   const commentCount = await db.Comment.findAll({where: {post_id}})
   return commentCount.length;
-
 }
-
-
-
-
 
 module.exports = {
   csrfProtection,

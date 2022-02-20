@@ -9,7 +9,6 @@ mixin validationErrorSummary(errors)
                 each error in errors
                     li= error
 
-
 mixin field(labelText, fieldName, fieldValue, fieldType = 'text', placeholder = null)
   div.field-container
     label(for=fieldName).form-label-text= labelText

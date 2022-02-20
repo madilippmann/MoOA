@@ -32,7 +32,6 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   User.associate = function (models) {
-    // associations can be defined here
     User.hasMany(models.Post, { foreignKey: "user_id" });
     User.hasMany(models.Comment, { foreignKey: "user_id" });
 
@@ -50,17 +49,7 @@ module.exports = (sequelize, DataTypes) => {
     };
     User.belongsToMany(models.User, columnMapFollowing);
     User.belongsToMany(models.User, columnMapFollower);
-
-    // const columnMapLike = {
-    //   through: "Like",
-    //   foreignKey: "user_id",
-    //   otherKey: "post_id"
-    // }
-
-    // User.belongsToMany(models.Post, columnMapLike)
     User.hasMany(models.Like, { foreignKey: "user_id"})
-
-
   };
   return User;
 };

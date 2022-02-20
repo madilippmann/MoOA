@@ -23,21 +23,9 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Post.associate = function (models) {
-    // associations can be defined here
     Post.belongsTo(models.User, { foreignKey: "user_id"});
     Post.hasMany(models.Comment, { foreignKey: "post_id", onDelete: 'CASCADE', hooks: true});
-
-    // const columnMapLike = {
-    //   through: "Like",
-    //   foreignKey: "post_id",
-    //   otherKey: "user_id",
-
-
-    // };
-
-    // Post.belongsToMany(models.User, columnMapLike);
     Post.hasMany(models.Like, { foreignKey: "post_id", onDelete: 'CASCADE', hooks: true } )
-
   };
   return Post;
 };

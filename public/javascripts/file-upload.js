@@ -13,8 +13,6 @@ uploadForm.addEventListener("submit", async event => {
     // get secure url from our server
     const { url } = await fetch("/s3Url").then(res => res.json())
 
-    console.log("URL: ", url);
-
     // post the image directly to the bucket
     // add const res = await fetch to check that res worked
     const res = await fetch(url, {
@@ -31,7 +29,7 @@ uploadForm.addEventListener("submit", async event => {
 
 
     // Send db info back to server to store image url and title in db
-    const addImageRes = await fetch('/add-image', {
+    const addImageRes = await fetch('/posts', {
         method: "POST",
         body: JSON.stringify({
             path,

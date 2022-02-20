@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { csrfProtection, asyncHandler, validationResult, postValidator, grabCommentCount, grabFollows, grabLikes } = require('./utils')
+const { asyncHandler } = require('./utils')
 const db = require('../db/models');
 const { requireAuth } = require('../auth')
 

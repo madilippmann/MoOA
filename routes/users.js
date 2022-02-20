@@ -5,11 +5,6 @@ const db = require('../db/models');
 const bcrypt = require('bcryptjs');
 const { loginUser, logoutUser, requireAuth } = require('../auth');
 
-// true for logged in , false for logged out
-// const userStatus = res.locals.authenticated
-
-
-
 router.get('/login', csrfProtection, function (req, res, next) {
 
   let sessionUsername;
@@ -68,7 +63,6 @@ router.post('/login', loginValidators, csrfProtection, asyncHandler(async functi
     errors,
     sessionUsername,
   })
-
 }));
 
 
@@ -85,12 +79,9 @@ router.get('/signup', csrfProtection, function (req, res, next) {
     user: {},
     sessionUsername
   })
-
 });
 
 router.post('/signup', userValidators, csrfProtection, asyncHandler(async function (req, res, next) {
-  // if validators fail
-
   const { firstName, lastName, username, email, password } = req.body
 
   let sessionUsername;
@@ -108,18 +99,14 @@ router.post('/signup', userValidators, csrfProtection, asyncHandler(async functi
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
-
     const hashedPassword = await bcrypt.hash(password, 12);
-
     user.hashedPassword = hashedPassword;
-
     await user.save();
 
     loginUser(req, res, user);
     return req.session.save(() => {
       res.redirect('/')
     })
-
 
   } else {
 
@@ -151,18 +138,11 @@ router.get('/demo-user', asyncHandler(async (req, res) => {
       username: 'alec_has_a_chair'
     }
   })
-
   loginUser(req, res, alec);
-
   req.session.save(() => {
     res.redirect('/')
   })
-  // res.send()
-
 }))
-
-
-//routing for /username
 
 router.get('/:username', asyncHandler(async (req, res, next) => {
 
@@ -186,26 +166,10 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
   })
 
   if (artist) {
-    //GRAB all the users posts
-
     const posts = await db.Post.findAll({
       where: {user_id: artist.id},
       order: [['updatedAt', 'DESC']]
-    }
-    )
-
-    // let counts = [];
-
-    // for (let i = 0; i < posts.length; i++) {
-    //   const post = posts[i];
-
-    //   let likeCount = await grabLikes(post.id);
-    //   // likeCount = String(likeCount);
-    //   const commentCount = await grabCommentCount(post.id)
-
-    //   const count = { likeCount, commentCount }
-    //   counts.push(count);
-    // }
+    })
 
     let counts = [];
 
@@ -249,22 +213,15 @@ router.get('/:username', asyncHandler(async (req, res, next) => {
   } else {
     next()
   }
-
-
 }))
 
-
-
 router.get('/:username/edit', csrfProtection,  asyncHandler(async (req, res, next) => {
-
- 
 
   let sessionUsername;
   if (req.session.auth) {
     sessionUsername = req.session.auth.username;
   }
 
-  // const username = req.params.username
   let user;
   let userId;
   if (req.session.auth) {
@@ -274,15 +231,10 @@ router.get('/:username/edit', csrfProtection,  asyncHandler(async (req, res, nex
     userId = -1;
   }
 
-  // const artist = await db.User.findOne({
-  //   where: {username}
-  // })
-
   if (user) {
     if (req.session.auth) {
       res.render('edit-user', {
         user,
-        // artist,
         userId,
         sessionUser: req.session.auth.userFirstName,
         sessionUsername,
@@ -293,7 +245,6 @@ router.get('/:username/edit', csrfProtection,  asyncHandler(async (req, res, nex
     const err = new Error('Page Not Found')
     next(err)
   }
-
 }))
 
 
@@ -348,7 +299,6 @@ router.get('/:username/avatar/edit', csrfProtection,  asyncHandler(async (req, r
     sessionUsername = req.session.auth.username;
   }
 
-  // const username = req.params.username
   let user;
   let userId;
   if (req.session.auth) {
@@ -357,10 +307,6 @@ router.get('/:username/avatar/edit', csrfProtection,  asyncHandler(async (req, r
   } else {
     userId = -1;
   }
-
-  // const artist = await db.User.findOne({
-  //   where: {username}
-  // })
 
   if (user) {
     if (req.session.auth) {
@@ -376,20 +322,17 @@ router.get('/:username/avatar/edit', csrfProtection,  asyncHandler(async (req, r
     const err = new Error('Page Not Found')
     next(err)
   }
-
 }))
 
 
 
 router.post('/:username/avatar/edit', csrfProtection,  asyncHandler(async (req, res, next) => {
 
-
   let sessionUsername;
   if (req.session.auth) {
     sessionUsername = req.session.auth.username;
   }
    
-  // const username = req.params.username
   let user;
   let userId;
   const { path } = req.body 
@@ -399,10 +342,6 @@ router.post('/:username/avatar/edit', csrfProtection,  asyncHandler(async (req, 
   } else {
     userId = -1;
   }
-
-  // const artist = await db.User.findOne({
-  //   where: {username}
-  // })
 
   if (user) {
     if (req.session.auth) {
@@ -414,9 +353,6 @@ router.post('/:username/avatar/edit', csrfProtection,  asyncHandler(async (req, 
     const err = new Error('Page Not Found')
     next(err)
   }
-
 }))
-
-
 
 module.exports = router;

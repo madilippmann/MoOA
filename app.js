@@ -18,7 +18,6 @@ const { sessionSecret, environment } = require('./config')
 
 const app = express();
 
-// view engine setup
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
@@ -27,8 +26,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(sessionSecret));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-// set up session middleware
 const store = new SequelizeStore({ db: sequelize });
 
 app.use(
@@ -53,9 +50,6 @@ app.use('/', indexRouter);
 app.use('/posts', postsRouter);
 app.use(commentsRouter)
 app.use(awsRouter)
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
