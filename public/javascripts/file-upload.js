@@ -15,7 +15,11 @@ uploadForm.addEventListener("submit", async event => {
     const token = document.querySelector('#token').getAttribute('value') // grab token to pass back into fetch
 
     // get secure url from our server
-    const { url } = await fetch("/s3Url").then(res => res.json())
+    try {
+        const { url } = await fetch("/s3Url").then(res => res.json())
+    } catch (err) {
+        console.log(err);
+    }
 
     // post the image directly to the bucket
     // add const res = await fetch to check that res worked

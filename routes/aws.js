@@ -7,8 +7,10 @@ const { createUploadURL } = require('../s3');
 
 
 router.get('/s3Url', async (req, res) => {
-    const url = await createUploadURL();
-    res.send({url})
+
+  const url = await createUploadURL();
+  res.send({url})
+
 })
 
 router.post('/add-image', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
