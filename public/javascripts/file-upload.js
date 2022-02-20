@@ -15,11 +15,11 @@ uploadForm.addEventListener("submit", async event => {
     const token = document.querySelector('#token').getAttribute('value') // grab token to pass back into fetch
 
     // get secure url from our server
-    try {
-        const { url } = await fetch("/s3Url").then(res => res.json())
-    } catch (err) {
-        console.log(err);
-    }
+    const { url } = await fetch("/s3Url").then(res => res.json())
+    // try {
+    // } catch (err) {
+    //     console.log(err);
+    // }
 
     console.log("URL: ", url);
 
