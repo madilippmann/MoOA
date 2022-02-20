@@ -20,12 +20,8 @@ const s3 = new AWS.S3({
 
 
 async function createUploadURL() {
-    // Create random image name - more secure
-    // const key = await randomBytes(20).toString('hex');
-
     const params = ({
         Bucket: bucketName,
-        // generate random path for added security
         Key: await randomBytes(20).toString('hex'),
         Expires: 60 // url will expire after 1 min
     });
