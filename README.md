@@ -1,4 +1,4 @@
-# ![](/public/favicon.ico) MoOA - *Museum of Online Art*
+# ![](/public/static/images/logo.jpg) MoOA - *Museum of Online Art*
 
 **Program Authors:** Will Kee, Wan-Yi Lee, Madi Lippmann & Ali Naqvi
 
