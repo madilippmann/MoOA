@@ -78,6 +78,21 @@ const userValidators = [
     }),
 ];
 
+
+
+const userEditValidators = [
+  check("firstName")
+    .exists({ checkFalsy: true })
+    .withMessage("Please enter a value for First Name.")
+    .isLength({ max: 50 })
+    .withMessage("First Name cannot be longer than 50 characters."),
+  check("lastName")
+    .exists({ checkFalsy: true })
+    .withMessage("Please enter a value for Last Name.")
+    .isLength({ max: 50 }),
+];
+
+
 const loginValidators = [
   check("email")
     .exists({ checkFalsy: true })
@@ -142,5 +157,6 @@ module.exports = {
   grabFollows,
   grabLikes,
   grabCommentCount,
-  commentValidator
+  commentValidator,
+  userEditValidators,
 };
