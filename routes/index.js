@@ -34,15 +34,24 @@ router.get('/', asyncHandler(async (req, res, next) => {
 
   let sessionUsername;
   if (req.session.auth) {
-    sessionUsername = req.session.auth.username;
-  }
+    const user = await db.User.findByPk(req.session.auth.userId)
 
-  res.render('home', {
-    title: 'Latest Exhibits',
-    posts,
-    counts,
-    sessionUsername
-  });
+    sessionUsername = req.session.auth.username;
+    res.render('home', {
+      title: 'Latest Exhibits',
+      posts,
+      counts,
+      sessionUsername,
+      user
+    });
+  } else {
+    res.render('home', {
+      title: 'Latest Exhibits',
+      posts,
+      counts,
+      sessionUsername,
+    });
+  }
 }));
 
 
@@ -61,7 +70,7 @@ router.get('/feed', requireAuth, asyncHandler(async (req, res, next) => {
     sessionUsername = req.session.auth.username;
   }
 
-  
+
   const posts = await db.Post.findAll({
     where: { user_id: {
       [Op.in]: followedIds
