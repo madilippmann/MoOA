@@ -1,5 +1,10 @@
 .outer-form-container.aws {
     top: 35px;
+
+}
+
+.outer-form-container.aws.avatarPage{
+ top: 80px;
 }
 
 #upload-form.aws {
@@ -95,4 +100,17 @@ input[type="file"] {
     margin-top: 50px;
     width: 100%;
     justify-content: space-evenly;
+}
+
+.form-element#upload-form.aws.avatarPage {
+    width: 100%
+
+}
+
+.btn.signUpButton.cancel.avatarPage {
+    margin-left: 15px;
+}
+
+.custom-aws-upload.file-name.avatarEdit {
+    width: 100%;
 }

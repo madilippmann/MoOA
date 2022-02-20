@@ -235,13 +235,13 @@ header {
 }
 
 
-.avatar {
+.avatarIcon {
     font-size: 35px;
     padding-bottom: 10px;
 }
 
 
-.avatar:hover {
+.avatarIcon:hover {
     opacity: 75%;
     cursor: pointer;
 }

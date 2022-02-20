@@ -1,0 +1,25 @@
+extends layout.pug
+include utils.pug
+
+append head
+    link(rel="stylesheet", href="/stylesheets/forms.css")
+    link(rel="stylesheet", href="/stylesheets/aws-form.css")
+
+
+block content
+    div.outer-form-container.aws.avatarPage
+        h1= title
+        +validationErrorSummary(errors)
+        div.form-container.aws
+            form(action=`/${sessionUsername}/avatar/edit`, method="post").form-element#upload-form.aws.avatarPage
+                input(type="hidden", name="_csrf", value=csrfToken)#token      
+
+                div.aws-input-group.custom.avatarEdit
+                    label(for="file").custom-aws-upload.file-name.avatarEdit Upload Avatar
+                        input(type="file", name="file", id="file", accept="image/*", required).upload-aws-button.
+
+                div.form-buttons.aws
+                    button(type="submit").btn.signUpButton.orange Submit
+                    a(href="/"): button(type="button").btn.signUpButton.cancel.avatarPage Cancel
+    script(src="/javascripts/avatar-upload.js")
+    script(src="/javascripts/custom-upload.js")
