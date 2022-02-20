@@ -233,10 +233,9 @@ router.get('/:postId/delete', requireAuth, asyncHandler(async(req, res, next) =>
         Bucket: bucketName,
         Key: path
     };
+    // Will not delete seed data from seed data bucket.
+    // Only uploaded data.
     s3.deleteObject(params);
-    // s3.deleteObject(params, function(err, data) {
-    // //   if (err) console.log(err, err.stack); // an error occurred
-    // });
 
     if (post && post.user_id === req.session.auth.userId ) {
         await post.destroy();
