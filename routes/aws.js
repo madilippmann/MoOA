@@ -9,7 +9,8 @@ const { createUploadURL } = require('../s3');
 router.get('/s3Url', async (req, res) => {
 
   const url = await createUploadURL();
-  res.send({url})
+  console.log("URL RETURNED FROM calling createUploadURL()", url);
+  res.json({url})
 
 })
 
