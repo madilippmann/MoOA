@@ -68,7 +68,6 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
 
     const post = await db.Post.findByPk(postId, {
         include: [ db.User, ]
-        // , db.Like, db.Comment
     });
 
     let liked;
@@ -97,7 +96,8 @@ router.get('/:postId', csrfProtection, asyncHandler(async (req, res, next) => {
 
     const comments = await db.Comment.findAll({
         where: { post_id: post.id },
-        include: db.User
+        include: db.User,
+        order: [["id", "DESC"]],
     })
 
     if (post) {
