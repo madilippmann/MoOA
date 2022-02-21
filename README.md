@@ -11,8 +11,6 @@
   - [Demo](#demo)
   - [Database Schema](#database-schema)
   - [Design](#design)
-  - [Code Snippets](#code-snippets)
-  - [Key Takeaways](#key-takeaways)
   - [Contributors](#contributors)
 
 
@@ -82,10 +80,6 @@ Original wireframes - designed with [Figma](https://figma.com)
 ### User Profile for Logged-in User
 <!-- ![](/public/static/readme-files/user-profile-logged-in.png) -->
 <img src="/public/static/readme-files/user-profile-logged-in.png" alt="profile page for logged-in user wireframe" style="width:800px;"/>
-
-## Code Snippets
-
-## Key Takeaways
 
 
 ## Contributors
