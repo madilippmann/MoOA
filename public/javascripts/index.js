@@ -2,35 +2,39 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const isEmpty = obj => Object.keys(obj).length === 0;
 
     const likeButton = document.getElementById('like-button');
-    likeButton.addEventListener('click', async () => {
 
-        const postUrl = window.location.href.split('/');
-        const postId = postUrl[postUrl.length - 1];
-        const likesCount = document.querySelector('.likes-num')
-        try {
-            const res = await fetch('/likes', {
-                method: "PUT",
-                body: JSON.stringify({ postId }),
-                headers: {
-                    'Content-Type': 'application/json'
+    if (likeButton) {
+        likeButton.addEventListener('click', async () => {
+
+            const postUrl = window.location.href.split('/');
+            const postId = postUrl[postUrl.length - 1];
+            const likesCount = document.querySelector('.likes-num')
+            try {
+                const res = await fetch('/likes', {
+                    method: "PUT",
+                    body: JSON.stringify({ postId }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+
+                if (!res.ok) {
+                    throw res;
                 }
-            })
 
-            if (!res.ok) {
-                throw res;
-            }
+                const newLike = await res.json();
 
-            const newLike = await res.json();
+                if (!isEmpty(newLike)) {
+                    likesCount.innerHTML = Number(likesCount.innerHTML) + 1
+                    likeButton.classList.add('liked')
+                } else {
+                    likesCount.innerHTML = Number(likesCount.innerHTML) - 1
+                    likeButton.classList.remove('liked')
+                }
+            } catch (err) { }
+        })
+    }
 
-            if (!isEmpty(newLike)) {
-                likesCount.innerHTML = Number(likesCount.innerHTML) + 1
-                likeButton.classList.add('liked')
-            } else {
-                likesCount.innerHTML = Number(likesCount.innerHTML) - 1
-                likeButton.classList.remove('liked')
-            }
-        } catch (err) { }
-    })
 
 
     const followButton = document.querySelector(".follow-icon");
