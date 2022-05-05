@@ -44,6 +44,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             const handleLink = document.getElementById('handle-username');
             const followsCount = document.querySelector('.follows-count')
             const url = handleLink.getAttribute('href');
+
             const username = url.split('/')[1];
 
             try {
