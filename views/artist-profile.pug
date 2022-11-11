@@ -10,8 +10,8 @@ block content
             h1= `${artist.firstName} ${artist.lastName}'s Gallery`
             div.username-and-follow
                 h2= `@${artist.username}`
-                if userId != artist.id
-                    i(class="fa-solid fa-user-plus follow-icon")
+                //- if userId != artist.id
+                //-     i(class="fa-solid fa-user-plus follow-icon")
         .grid
             - var i = -1;
             each post in posts
